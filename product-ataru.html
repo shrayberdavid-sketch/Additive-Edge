@@ -27,19 +27,13 @@
           <h1 class="pd-title">Ataru</h1>
           <p class="pd-lede">A UV-curable DLP resin engineered for the hard cases — heat resistance beyond 300°C, high tensile strength, and low dielectric loss. Ideal for high-temperature tooling, molds, RF components and additively manufactured electronics.</p>
 
-          <div class="pd-price" id="pdPrice">$299.00</div>
-          <div class="pd-price-note">Indicative pricing — placeholder, replace with live rates</div>
+          <div class="pd-price" id="pdPrice">$693.00</div>
+          <div class="pd-price-note" id="pdNote">1 L and 5 L volume pricing. 5 L ships in one container.</div>
 
           <div class="opt-group">
-            <label>Size</label>
-            <div class="opt-row" data-opt="Size">
-              <button class="opt sel">1 kg</button><button class="opt">5 kg</button>
-            </div>
-          </div>
-          <div class="opt-group">
-            <label>Grade</label>
-            <div class="opt-row" data-opt="Grade">
-              <button class="opt sel">Standard</button>
+            <label>Volume</label>
+            <div class="opt-row" data-opt="Volume">
+              <button class="opt sel">1 L</button><button class="opt">5 L</button>
             </div>
           </div>
 
@@ -51,6 +45,12 @@
             </div>
             <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">&rarr;</span></button>
             <span class="added-note" id="addedNote">&#10003; Added to cart</span>
+          </div>
+          <a class="btn btn-ghost ds-btn" href="ATARU-BLACK.pdf" target="_blank" rel="noopener">&#8595; Download data sheet (PDF)</a>
+
+          <div style="margin-top:28px">
+            <span class="pill on">300°C+ heat resistance</span><span class="pill on">Low dielectric loss</span><span class="pill on">Excellent surface quality</span>
+            <span class="pill">High tensile strength</span><span class="pill">DLP-compatible</span><span class="pill">Low viscosity</span><span class="pill">Post-cure ready</span>
           </div>
 
           <div class="pd-props">
@@ -68,6 +68,22 @@
     </div>
   </section>
 
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">Technical Specifications</span><h2>Tested performance</h2>
+        <p style="font-size:14px">Measured on cured DLP samples. Values are indicative for Ataru high-temp resin.</p></div>
+      <div class="specs mech-table reveal">
+        <div class="spec-row"><div class="sv">Heat deflection temperature</div><div class="mv">300°C+</div><div class="mn">ISO 75</div></div>
+        <div class="spec-row"><div class="sv">Tensile strength</div><div class="mv">65 MPa</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">Tensile modulus</div><div class="mv">2.7 GPa</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">Elongation at break</div><div class="mv">5%</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">Flexural strength</div><div class="mv">80 MPa</div><div class="mn">ISO 178</div></div>
+        <div class="spec-row"><div class="sv">Dielectric constant</div><div class="mv">~3.1</div><div class="mn">@1 MHz</div></div>
+      </div>
+      <p class="checkout-note reveal" style="margin-top:22px">Best for high-temp tooling, RF components, mold inserts, and functional prototypes where heat resistance, electrical stability, and surface finish matter. Not recommended for long-term hydrocarbon exposure.</p>
+    </div>
+  </section>
+
   <section class="ctaband">
     <div class="wrap"><h2>Working on electronics or RF?</h2><p>Ataru pairs with our AME and high-temp tooling production — let's talk.</p>
       <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a></div>
@@ -79,13 +95,17 @@
 <script>
   (function(){
     const P = window.AE_PRODUCTS.ataru;
-    const sel = {Size:"1 kg", Grade:"Standard"};
-    document.querySelectorAll(".opt-row").forEach(row=>{
-      const key = row.getAttribute("data-opt");
-      row.addEventListener("click",e=>{
-        const b = e.target.closest(".opt"); if(!b) return;
-        row.querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));
-        b.classList.add("sel"); sel[key]=b.textContent.trim();
+    let volume = "1 L";
+    const priceEl = document.getElementById("pdPrice");
+    const noteEl = document.getElementById("pdNote");
+    function refresh(){
+      priceEl.textContent = window.AE_money(P.prices[volume]);
+      noteEl.textContent = volume + (volume === "5 L" ? " · ships in one container" : "");
+    }
+    document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(b=>{
+      b.addEventListener("click",()=>{
+        document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(o=>o.classList.remove("sel"));
+        b.classList.add("sel"); volume = b.textContent.trim(); refresh();
       });
     });
     const qVal=document.getElementById("qVal");
@@ -94,11 +114,11 @@
     qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
     document.getElementById("addBtn").onclick=()=>{
       const qty=Math.max(1,parseInt(qVal.value)||1);
-      const variant=sel.Size+" · "+sel.Grade;
-      window.AE.add(P.id, variant, qty, P.price, P.name);
+      window.AE.add(P.id, volume, qty, P.prices[volume], P.name);
       const note=document.getElementById("addedNote");
       note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
     };
+    refresh();
   })();
 </script>
 </body>

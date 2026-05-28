@@ -40,5 +40,5 @@ then visit http://localhost:8000
 ## Notes
 - The cart is a front-end preview (uses browser storage). It calculates items and totals but does **not** process payments. To take real orders, connect a checkout (Wix Stores, Snipcart, or Stripe).
 - Rizium pricing is live: 500 g = $99, 820 g = $160 (set in `app.js`).
-- **Ataru pricing is a placeholder ($299)** — update in `app.js` and `product-ataru.html` / `shop.html`.
+- Ataru pricing is now set to $693 in `app.js`, `product-ataru.html`, `shop.html`, `index.html`, and `materials.html`.
 - Product catalog and prices live in `app.js` (`PRODUCTS`).

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataru Resin Cleaner — Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="nav-root"></div>
+<main>
+
+  <section style="padding-top:96px">
+    <div class="wrap">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:34px;letter-spacing:.05em">
+        <a href="shop.html" style="color:var(--dim)">SHOP</a> &nbsp;/&nbsp; <span style="color:var(--accent)">ATARU RESIN CLEANER</span>
+      </div>
+      <div class="pd-grid">
+        <div class="pd-vis">
+          <div class="prod-thumb resin" style="position:absolute;inset:0;border:none;border-radius:16px"><span class="ptag">ATARU // RESIN CLEANER</span><span class="ptype">POST-PRINT</span><div class="spool" style="width:150px;height:150px"></div></div>
+        </div>
+        <div>
+          <span class="label pd-eyebrow">Resin Wash</span>
+          <h1 class="pd-title">Ataru Resin Cleaner</h1>
+          <p class="pd-lede">A high-performance wash formulated for Ataru DLP resin prints. Keeps supports and surface finish clean while ensuring safe post-processing for high-temp photopolymer parts.</p>
+
+          <div class="pd-price" id="pdPrice">$24.00</div>
+          <div class="pd-price-note" id="pdNote">1 L and 5 L pricing. 5 L ships in one container.</div>
+
+          <div class="opt-group">
+            <label>Volume</label>
+            <div class="opt-row" data-opt="Volume">
+              <button class="opt sel">1 L</button><button class="opt">5 L</button>
+            </div>
+          </div>
+
+          <div class="add-row">
+            <div class="qty">
+              <button id="qDown">−</button>
+              <input id="qVal" type="text" value="1" inputmode="numeric">
+              <button id="qUp">+</button>
+            </div>
+            <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">→</span></button>
+            <span class="added-note" id="addedNote">✓ Added to cart</span>
+          </div>
+
+          <div class="pd-props">
+            <div class="pd-prop"><div class="pk">Product type</div><div class="pv">Resin cleaner / post-print wash</div></div>
+            <div class="pd-prop"><div class="pk">Compatibility</div><div class="pv">Optimized for Ataru DLP resin and similar high-temp photopolymers</div></div>
+            <div class="pd-prop"><div class="pk">Container</div><div class="pv">5 L ships in a single container, not separate bottles</div></div>
+            <div class="pd-prop"><div class="pk">Use</div><div class="pv">Wash, rinse, and dry cured DLP parts for clean finish</div></div>
+            <div class="pd-prop"><div class="pk">Volume</div><div class="pv">1 L or 5 L</div></div>
+            <div class="pd-prop"><div class="pk">Safety</div><div class="pv">Store sealed, avoid direct skin contact, and keep away from heat sources</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wrap"><h2>Need help post-processing?</h2><p>We can recommend best practice for rinsing, curing, and handling Ataru parts.</p>
+      <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">→</span></a></div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  (function(){
+    const P = window.AE_PRODUCTS["ataru-cleaner"];
+    let volume = "1 L";
+    const priceEl = document.getElementById("pdPrice");
+    const noteEl = document.getElementById("pdNote");
+    function refresh(){
+      priceEl.textContent = window.AE_money(P.prices[volume]);
+      noteEl.textContent = volume + (volume === "5 L" ? " · ships in one container" : "");
+    }
+    document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(b=>{
+      b.addEventListener("click",()=>{
+        document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(o=>o.classList.remove("sel"));
+        b.classList.add("sel"); volume = b.textContent.trim(); refresh();
+      });
+    });
+    const qVal=document.getElementById("qVal");
+    document.getElementById("qUp").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)+1);
+    document.getElementById("qDown").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)-1);
+    qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
+    document.getElementById("addBtn").onclick=()=>{
+      const qty=Math.max(1,parseInt(qVal.value)||1);
+      window.AE.add(P.id, volume, qty, P.prices[volume], P.name);
+      const note=document.getElementById("addedNote");
+      note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
+    };
+    refresh();
+  })();
+</script>
+</body>
+</html>
