@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataru DLP Resin — Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="nav-root"></div>
+<main>
+
+  <section style="padding-top:96px">
+    <div class="wrap">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:34px;letter-spacing:.05em">
+        <a href="shop.html" style="color:var(--dim)">SHOP</a> &nbsp;/&nbsp; <span style="color:var(--accent)">ATARU</span>
+      </div>
+      <div class="pd-grid">
+        <div class="pd-vis">
+          <div class="prod-thumb resin" style="position:absolute;inset:0;border:none;border-radius:16px"><span class="ptag">ATARU // DLP RESIN</span><span class="ptype">HIGH-TEMP</span><div class="spool" style="width:150px;height:210px"></div></div>
+        </div>
+        <div>
+          <span class="label pd-eyebrow">High-Performance Resin</span>
+          <h1 class="pd-title">Ataru</h1>
+          <p class="pd-lede">A UV-curable DLP resin engineered for the hard cases — heat resistance beyond 300°C, high tensile strength, and low dielectric loss. Ideal for high-temperature tooling, molds, RF components and additively manufactured electronics.</p>
+
+          <div class="pd-price" id="pdPrice">$299.00</div>
+          <div class="pd-price-note">Indicative pricing — placeholder, replace with live rates</div>
+
+          <div class="opt-group">
+            <label>Size</label>
+            <div class="opt-row" data-opt="Size">
+              <button class="opt sel">1 kg</button><button class="opt">5 kg</button>
+            </div>
+          </div>
+          <div class="opt-group">
+            <label>Grade</label>
+            <div class="opt-row" data-opt="Grade">
+              <button class="opt sel">Standard</button>
+            </div>
+          </div>
+
+          <div class="add-row">
+            <div class="qty">
+              <button id="qDown">&minus;</button>
+              <input id="qVal" type="text" value="1" inputmode="numeric">
+              <button id="qUp">&#43;</button>
+            </div>
+            <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">&rarr;</span></button>
+            <span class="added-note" id="addedNote">&#10003; Added to cart</span>
+          </div>
+
+          <div class="pd-props">
+            <div class="pd-prop"><div class="pk">Material</div><div class="pv">UV-curable photopolymer resin</div></div>
+            <div class="pd-prop"><div class="pk">Process</div><div class="pv">DLP (digital light processing)</div></div>
+            <div class="pd-prop"><div class="pk">Heat resistance</div><div class="pv">Beyond 300°C</div></div>
+            <div class="pd-prop"><div class="pk">Mechanical</div><div class="pv">High tensile strength & robust resilience</div></div>
+            <div class="pd-prop"><div class="pk">Electrical</div><div class="pv">Low dielectric loss — strong for RF / high-frequency</div></div>
+            <div class="pd-prop"><div class="pk">Finish</div><div class="pv">Excellent surface quality, even on entry-level DLP</div></div>
+            <div class="pd-prop"><div class="pk">Viscosity</div><div class="pv">Low — broad DLP-system compatibility</div></div>
+            <div class="pd-prop"><div class="pk">Best for</div><div class="pv">High-temp tooling & molds, RF/antenna parts, AME, aerospace</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wrap"><h2>Working on electronics or RF?</h2><p>Ataru pairs with our AME and high-temp tooling production — let's talk.</p>
+      <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a></div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  (function(){
+    const P = window.AE_PRODUCTS.ataru;
+    const sel = {Size:"1 kg", Grade:"Standard"};
+    document.querySelectorAll(".opt-row").forEach(row=>{
+      const key = row.getAttribute("data-opt");
+      row.addEventListener("click",e=>{
+        const b = e.target.closest(".opt"); if(!b) return;
+        row.querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));
+        b.classList.add("sel"); sel[key]=b.textContent.trim();
+      });
+    });
+    const qVal=document.getElementById("qVal");
+    document.getElementById("qUp").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)+1);
+    document.getElementById("qDown").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)-1);
+    qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
+    document.getElementById("addBtn").onclick=()=>{
+      const qty=Math.max(1,parseInt(qVal.value)||1);
+      const variant=sel.Size+" · "+sel.Grade;
+      window.AE.add(P.id, variant, qty, P.price, P.name);
+      const note=document.getElementById("addedNote");
+      note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
+    };
+  })();
+</script>
+</body>
+</html>

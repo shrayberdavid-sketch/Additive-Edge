@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Additive Edge — On-Demand 3D-Printed Parts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+<div id="nav-root"></div>
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="label">On-Demand Additive Manufacturing</span>
+          <h1>Your part.<br>Our <span class="accent">network.</span><br>Production-grade.</h1>
+          <p class="sub">Send us your design. We print it in-house and across a vetted manufacturing network — printer- and material-agnostic — to deliver the right part by the right process, every time.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+            <a class="btn btn-ghost btn-lg" href="shop.html">Shop materials</a>
+          </div>
+          <div class="hero-coords">
+            <div><b>POLYMER + METAL</b>FDM · SLA · SLS · DMLS · WAAM</div>
+            <div><b>1 &rarr; 1,000s</b>Prototype to bridge production</div>
+            <div><b>IN-HOUSE + NETWORK</b>One managed relationship</div>
+          </div>
+        </div>
+        <div class="render">
+          <div class="frame"><span class="tag tl">AE-RENDER // BUILD_SIM</span><span class="tag br">REV. 2026.05</span></div>
+          <div class="stack" id="stack"></div>
+          <div class="printhead"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-item"><div class="n">100<i>+</i></div><div class="t">Machine platforms</div></div>
+      <div class="strip-item"><div class="n">45<i>+</i></div><div class="t">Engineering materials</div></div>
+      <div class="strip-item"><div class="n">8<i>+</i></div><div class="t">Years in additive</div></div>
+      <div class="strip-item"><div class="n">1<i>:1</i></div><div class="t">Point of contact</div></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">How It Works</span><h2>From file to finished part</h2></div>
+      <div class="steps reveal">
+        <div class="step"><div class="num">01</div><h3>Send your part</h3><p>Upload your STEP/STL and requirements — material, tolerances, quantity, timeline.</p></div>
+        <div class="step"><div class="num">02</div><h3>We match it</h3><p>We select the optimal process, material and machine — in-house or from our network.</p></div>
+        <div class="step"><div class="num">03</div><h3>We produce & QA</h3><p>Parts are printed, finished and inspected to engineering-grade standards.</p></div>
+        <div class="step"><div class="num">04</div><h3>We ship</h3><p>Finished, ready-to-use parts arrive at your door. One vendor, one invoice.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="net">
+    <div class="wrap">
+      <div class="net-grid">
+        <div class="reveal">
+          <span class="label">The Edge</span>
+          <p class="net-quote">One relationship.<br>An entire <em>production network</em> behind it.</p>
+          <ul class="net-list">
+            <li><span class="k">A</span><div><b>Equipment diversity</b><p>Access to 100+ platforms means no part is limited by what a single shop happens to own.</p></div></li>
+            <li><span class="k">B</span><div><b>Material breadth</b><p>45+ engineering polymers and metals — we pick what the application actually needs.</p></div></li>
+            <li><span class="k">C</span><div><b>Capacity & redundancy</b><p>In-house production plus partner capacity to scale and stay on schedule.</p></div></li>
+          </ul>
+        </div>
+        <div class="agnostic reveal">
+          <span class="label">Agnostic by design</span>
+          <h3>We're not tied to one machine</h3>
+          <p>We print in-house and partner widely, so our only loyalty is to the best result for your part.</p>
+          <div style="margin-top:22px;position:relative">
+            <span class="pill on">FDM / FFF</span><span class="pill on">SLA / DLP</span><span class="pill on">SLS</span>
+            <span class="pill on">Metal LPBF</span><span class="pill on">Wire-Arc</span><span class="pill">Composites</span><span class="pill">High-temp polymers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">Shop Materials</span><h2>Buy the materials we build with</h2>
+        <p>Our store carries the high-performance materials behind our best parts — ship-ready to your bench.</p></div>
+      <div class="grid-3 reveal">
+        <a class="prod-card" href="product-rizium.html">
+          <div class="prod-thumb gf"><span class="ptag">RIZIUM // GLASS FIBER</span><span class="ptype">COC + GF</span><div class="spool"></div></div>
+          <div class="prod-body"><h3>Rizium GF</h3><p class="desc">Glass-fiber-reinforced COC filament — high rigidity, near-isotropic strength, no drying needed.</p>
+            <div class="prod-meta"><div class="prod-price">$99<small>FROM · 500 g</small></div><span class="btn btn-ghost">View &rarr;</span></div></div>
+        </a>
+        <a class="prod-card" href="product-rizium-cf.html">
+          <div class="prod-thumb cf"><span class="ptag">RIZIUM // CARBON FIBER</span><span class="ptype">COC + CF</span><div class="spool"></div></div>
+          <div class="prod-body"><h3>Rizium CF</h3><p class="desc">Carbon-fiber grade — maximum stiffness in matte black, same no-drying COC base.</p>
+            <div class="prod-meta"><div class="prod-price">$99<small>FROM · 500 g</small></div><span class="btn btn-ghost">View &rarr;</span></div></div>
+        </a>
+        <a class="prod-card" href="product-ataru.html">
+          <div class="prod-thumb resin"><span class="ptag">ATARU // DLP RESIN</span><span class="ptype">HIGH-TEMP</span><div class="spool"></div></div>
+          <div class="prod-body"><h3>Ataru</h3><p class="desc">300°C+ DLP resin with low dielectric loss — tooling, RF and electronics.</p>
+            <div class="prod-meta"><div class="prod-price">$299<small>FROM</small></div><span class="btn btn-ghost">View &rarr;</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">What We Make</span><h2>Capabilities snapshot</h2></div>
+      <div class="grid-3 reveal">
+        <div class="card"><div class="bar"></div><div class="ix">CAP-01</div><h3>End-use parts</h3><p>Functional, durable production components — not just prototypes.</p></div>
+        <div class="card"><div class="bar"></div><div class="ix">CAP-02</div><h3>Tooling & fixtures</h3><p>Jigs, fixtures and tooling built to tight, repeatable tolerances.</p></div>
+        <div class="card"><div class="bar"></div><div class="ix">CAP-03</div><h3>Tight-tolerance printing</h3><p>Precision parts where fit, form and function are non-negotiable.</p></div>
+        <div class="card"><div class="bar"></div><div class="ix">CAP-04</div><h3>Bridge production</h3><p>Low-volume and bridge runs to get to market before hard tooling.</p></div>
+        <div class="card"><div class="bar"></div><div class="ix">CAP-05</div><h3>Rapid prototyping</h3><p>Fast iterations across processes to validate designs quickly.</p></div>
+        <div class="card"><div class="bar"></div><div class="ix">CAP-06</div><h3>Metal & polymer</h3><p>From engineering thermoplastics to laser-fused and wire-arc metal.</p></div>
+      </div>
+      <div style="margin-top:30px" class="reveal"><a class="btn btn-ghost" href="what-we-make.html">Full capabilities <span class="arr">&rarr;</span></a></div>
+    </div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wrap"><h2>Have a part? Let's make it.</h2><p>Send your file and specs — we'll come back with the best way to produce it.</p>
+      <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a></div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+</body>
+</html>

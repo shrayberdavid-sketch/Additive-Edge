@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizium CF Filament — Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="nav-root"></div>
+<main>
+
+  <section style="padding-top:96px">
+    <div class="wrap">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:34px;letter-spacing:.05em">
+        <a href="shop.html" style="color:var(--dim)">SHOP</a> &nbsp;/&nbsp; <span style="color:var(--accent)">RIZIUM CF</span>
+      </div>
+      <div class="pd-grid">
+        <div class="pd-vis">
+          <div class="prod-thumb cf" style="position:absolute;inset:0;border:none;border-radius:16px"><span class="ptag">RIZIUM // CARBON FIBER</span><span class="ptype">COC + CF</span><div class="spool" style="width:200px;height:200px"></div></div>
+        </div>
+        <div>
+          <span class="label pd-eyebrow">Engineering Filament · RIZIUM® Line</span>
+          <h1 class="pd-title">Rizium CF</h1>
+          <p class="pd-lede">The carbon-fiber grade of the only fiber-filled COC blend filament on the market — maximum stiffness in a sleek matte-black finish, with near-isotropic strength, dimensional stability, and no drying required.</p>
+
+          <div class="pd-price" id="pdPrice">$99.00</div>
+          <div class="pd-price-note" id="pdNote">500 g spool · in stock</div>
+
+          <div class="opt-group">
+            <label>Spool size</label>
+            <div class="opt-row" data-opt="Spool">
+              <button class="opt sel">500 g</button><button class="opt">820 g</button>
+            </div>
+          </div>
+
+          <div class="add-row">
+            <div class="qty">
+              <button id="qDown">&minus;</button>
+              <input id="qVal" type="text" value="1" inputmode="numeric">
+              <button id="qUp">&#43;</button>
+            </div>
+            <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">&rarr;</span></button>
+            <span class="added-note" id="addedNote">&#10003; Added to cart</span>
+          </div>
+          <a class="btn btn-ghost ds-btn" href="Rizium_CF.pdf" target="_blank" rel="noopener">&#8595; Download data sheet (PDF)</a>
+
+          <div style="margin-top:28px">
+            <span class="pill on">Maximum stiffness</span><span class="pill on">No drying needed</span><span class="pill on">GREENGUARD 2904</span>
+            <span class="pill">Matte black</span><span class="pill">Chemical resistant</span><span class="pill">Cryo / cold-resistant</span><span class="pill">UV stable</span>
+          </div>
+
+          <div class="pd-props">
+            <div class="pd-prop"><div class="pk">Base polymer</div><div class="pv">Cyclic Olefin Copolymer (COC) blend + carbon fiber</div></div>
+            <div class="pd-prop"><div class="pk">Process</div><div class="pv">FFF — any printer with hardened gears & nozzle</div></div>
+            <div class="pd-prop"><div class="pk">Moisture absorption</div><div class="pv">&lt;0.01% — always ready to print, no drying</div></div>
+            <div class="pd-prop"><div class="pk">Specific gravity</div><div class="pv">1.02 g/cm³ — an 820 g spool ≈ the length of a 1 kg PLA spool</div></div>
+            <div class="pd-prop"><div class="pk">Glass transition / HDT</div><div class="pv">78°C / 73°C</div></div>
+            <div class="pd-prop"><div class="pk">Flame class</div><div class="pv">UL94-HB</div></div>
+            <div class="pd-prop"><div class="pk">Emissions</div><div class="pv">Low VOC · UL GREENGUARD 2904 certified · no venting required</div></div>
+            <div class="pd-prop"><div class="pk">Diameter</div><div class="pv">1.75 mm ±0.02 mm</div></div>
+            <div class="pd-prop"><div class="pk">Print profile</div><div class="pv">Nozzle 220–260°C · bed 90°C · up to 250 mm/s · 30 mm³/s</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">Mechanical Properties</span><h2>Tested performance</h2>
+        <p style="font-size:14px">Measured on a RIZE™ ONE printer, solid infill, X-Y plane. Stiffer than GF — note the higher moduli.</p></div>
+      <div class="specs mech-table reveal">
+        <div class="spec-row"><div class="sv">Flexural strength</div><div class="mv">85 MPa</div><div class="mn">ISO 178</div></div>
+        <div class="spec-row"><div class="sv">Flexural modulus</div><div class="mv">4.8 GPa</div><div class="mn">ISO 178</div></div>
+        <div class="spec-row"><div class="sv">Tensile strength</div><div class="mv">56 MPa</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">Tensile modulus</div><div class="mv">6.7 GPa</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">Tensile elongation</div><div class="mv">1.1%</div><div class="mn">ASTM D638</div></div>
+        <div class="spec-row"><div class="sv">IZOD impact, unnotched</div><div class="mv">225 J/m</div><div class="mn">ASTM D256</div></div>
+        <div class="spec-row"><div class="sv">IZOD impact, notched</div><div class="mv">75 J/m</div><div class="mn">ASTM D256</div></div>
+      </div>
+      <p class="checkout-note reveal" style="margin-top:22px">Best where stiffness and a premium finish matter — gears, structural brackets, robotic end-effectors, drone parts and tooling. Note: not ideal for automotive (hydrocarbon exposure) or sustained high-temp use (73°C HDT); support bridges and overhangs well.</p>
+    </div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wrap"><h2>Want us to print it for you?</h2><p>Skip the spool — send the part and we'll produce it in Rizium CF.</p>
+      <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a></div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  (function(){
+    const P = window.AE_PRODUCTS["rizium-cf"];
+    let size = "500 g";
+    const priceEl = document.getElementById("pdPrice");
+    const noteEl  = document.getElementById("pdNote");
+    function refresh(){ priceEl.textContent = window.AE_money(P.prices[size]); noteEl.textContent = size+" spool · in stock"; }
+    document.querySelectorAll('.opt-row[data-opt="Spool"] .opt').forEach(b=>{
+      b.addEventListener("click",()=>{
+        document.querySelectorAll('.opt-row[data-opt="Spool"] .opt').forEach(o=>o.classList.remove("sel"));
+        b.classList.add("sel"); size=b.textContent.trim(); refresh();
+      });
+    });
+    const qVal=document.getElementById("qVal");
+    document.getElementById("qUp").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)+1);
+    document.getElementById("qDown").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)-1);
+    qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
+    document.getElementById("addBtn").onclick=()=>{
+      const qty=Math.max(1,parseInt(qVal.value)||1);
+      window.AE.add(P.id, size, qty, P.prices[size], P.name);
+      const note=document.getElementById("addedNote");
+      note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
+    };
+    refresh();
+  })();
+</script>
+</body>
+</html>

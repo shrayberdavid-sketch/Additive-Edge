@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote — Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="quote">
+<div id="nav-root"></div>
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="label">Get a Quote</span>
+      <h1>Start a project</h1>
+      <p class="sub">Tell us about your part. We'll come back with the best way to produce it — process, material and timeline.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="quote-grid">
+        <div class="reveal">
+          <div class="frow">
+            <div class="field"><label>Name</label><input id="f-name" type="text" placeholder="Your name"></div>
+            <div class="field"><label>Company</label><input id="f-co" type="text" placeholder="Company"></div>
+          </div>
+          <div class="field"><label>Email</label><input id="f-email" type="email" placeholder="you@company.com"></div>
+          <div class="field"><label>Part description</label><textarea id="f-part" placeholder="What are you making? Application, key requirements, tolerances…"></textarea></div>
+          <div class="frow">
+            <div class="field"><label>Material</label><input id="f-mat" type="text" placeholder="e.g. Rizium GF, Ataru, PEEK — or 'recommend one'"></div>
+            <div class="field"><label>Quantity</label><input id="f-qty" type="text" placeholder="e.g. 1, 50, 1,000"></div>
+          </div>
+          <div class="field"><label>Timeline</label>
+            <select id="f-time"><option>Standard</option><option>Rush / expedited</option><option>Flexible</option><option>Ongoing / production</option></select>
+          </div>
+          <button class="btn btn-primary btn-lg" id="sendBtn">Send request <span class="arr">&rarr;</span></button>
+          <div class="formnote" id="formnote">Thanks — your request is ready to send. Your email client will open with the details. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+        </div>
+        <div class="contact-card reveal">
+          <span class="label">Direct Contact</span>
+          <div class="ci"><div class="k">Email</div><div class="v"><a href="mailto:david@additive-edge.com">david@additive-edge.com</a></div></div>
+          <div class="ci"><div class="k">Phone</div><div class="v"><a href="tel:6173316266">617-331-6266</a></div></div>
+          <div class="ci"><div class="k">Location</div><div class="v">Sharon, MA 02067</div></div>
+          <div class="ci"><div class="k">Coverage</div><div class="v">Nationwide via network</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  document.getElementById("sendBtn").onclick=function(){
+    const g=id=>(document.getElementById(id).value||"").trim();
+    const body=
+      "Name: "+g("f-name")+"\n"+
+      "Company: "+g("f-co")+"\n"+
+      "Email: "+g("f-email")+"\n\n"+
+      "Part description:\n"+g("f-part")+"\n\n"+
+      "Material: "+g("f-mat")+"\n"+
+      "Quantity: "+g("f-qty")+"\n"+
+      "Timeline: "+g("f-time");
+    const url="mailto:david@additive-edge.com?subject="+encodeURIComponent("Quote request — "+(g("f-co")||g("f-name")||"New part"))+"&body="+encodeURIComponent(body);
+    document.getElementById("formnote").style.display="block";
+    window.location.href=url;
+  };
+</script>
+</body>
+</html>

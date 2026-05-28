@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="nav-root"></div>
+<main>
+
+  <section class="page-hero" style="padding-bottom:40px">
+    <div class="wrap"><span class="label">Cart</span><h1>Your cart</h1></div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div id="cartRoot"></div>
+    </div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  (function(){
+    const root = document.getElementById("cartRoot");
+    const money = window.AE_money;
+
+    function render(){
+      const cart = window.AE.cart();
+      if(!cart.length){
+        root.innerHTML =
+          '<div class="cart-empty"><h2>Your cart is empty</h2>'+
+          '<p style="margin-bottom:26px">Browse our engineering-grade filament and resin.</p>'+
+          '<a class="btn btn-primary btn-lg" href="shop.html">Go to shop &rarr;</a></div>';
+        return;
+      }
+      const lines = cart.map(i=>{
+        const k = i.id+"|"+i.variant;
+        return '<div class="cart-line" data-k="'+k+'">'+
+          '<div class="cl-thumb"><span></span></div>'+
+          '<div><h4>'+i.name+'</h4><div class="cl-variant">'+i.variant+'</div>'+
+            '<div class="qty" style="margin-top:10px">'+
+              '<button data-act="dec">&minus;</button>'+
+              '<input value="'+i.qty+'" readonly>'+
+              '<button data-act="inc">&#43;</button>'+
+            '</div></div>'+
+          '<div class="cl-right"><div class="cl-price">'+money(i.qty*i.price)+'</div>'+
+            '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:var(--dim);margin-top:4px">'+money(i.price)+' ea</div>'+
+            '<button class="cl-remove" data-act="rm">Remove</button></div>'+
+        '</div>';
+      }).join("");
+
+      root.innerHTML =
+        '<div class="cart-wrap"><div>'+lines+'</div>'+
+        '<div class="summary"><h3>Order summary</h3>'+
+          '<div class="sum-row"><span>Subtotal</span><span>'+money(window.AE.total())+'</span></div>'+
+          '<div class="sum-row"><span>Shipping</span><span>Calculated at checkout</span></div>'+
+          '<div class="sum-row"><span>Tax</span><span>Calculated at checkout</span></div>'+
+          '<div class="sum-row total"><span>Estimated total</span><b>'+money(window.AE.total())+'</b></div>'+
+          '<button class="btn btn-primary btn-lg" id="checkout" style="width:100%;justify-content:center;margin-top:20px">Checkout &rarr;</button>'+
+          '<p class="checkout-note">Secure payment & live shipping rates will be handled by Wix Stores on the live site. This preview cart calculates your items and totals.</p>'+
+        '</div></div>';
+
+      root.querySelectorAll(".cart-line").forEach(line=>{
+        const k = line.getAttribute("data-k");
+        line.querySelectorAll("[data-act]").forEach(btn=>{
+          btn.onclick=()=>{
+            const act = btn.getAttribute("data-act");
+            const item = window.AE.cart().find(i=>(i.id+"|"+i.variant)===k);
+            if(act==="inc") window.AE.setQty(k, item.qty+1);
+            if(act==="dec") window.AE.setQty(k, item.qty-1);
+            if(act==="rm")  window.AE.remove(k);
+            render();
+          };
+        });
+      });
+      const co = document.getElementById("checkout");
+      if(co) co.onclick=()=>alert("Checkout is handled by Wix Stores on the live site.\n\nEstimated total: "+money(window.AE.total()));
+    }
+    render();
+  })();
+</script>
+</body>
+</html>
