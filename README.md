@@ -1,8 +1,8 @@
 # Additive Edge
 
-Marketing + storefront website for **Additive Edge** — an on-demand additive manufacturing production hub (in-house production + a vetted partner network) with a store selling the RIZIUM® line and Ataru materials.
+Marketing + storefront website for **Additive Edge** - an on-demand additive manufacturing production hub (in-house production + a vetted partner network) with a store selling the RIZIUM® line and Ataru materials.
 
-Static site — plain HTML, CSS, and JavaScript. No build step, no dependencies.
+Static site - plain HTML, CSS, and JavaScript. No build step, no dependencies.
 
 ## Structure
 

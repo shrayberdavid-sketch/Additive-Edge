@@ -1,9 +1,9 @@
-/* ============ ADDITIVE EDGE — APP.JS ============ */
+/* ============ ADDITIVE EDGE - APP.JS ============ */
 (function(){
   "use strict";
 
   /* ---- PRODUCT CATALOG ----
-     NOTE: prices are PLACEHOLDERS — replace `price` values with real pricing. */
+     NOTE: prices are PLACEHOLDERS - replace `price` values with real pricing. */
   const PRODUCTS = {
     "rizium-gf": {
       id:"rizium-gf", name:"Rizium GF", type:"filament",
@@ -73,9 +73,8 @@
     ["what-we-make.html","capabilities","What We Make"],
     ["our-network.html","network","Our Network"],
     ["materials.html","materials","Materials"],
-    ["shop.html","shop","Shop"],
-    ["industries.html","industries","Industries"],
-    ["about.html","about","About"]
+    ["about.html","about","About"],
+    ["shop.html","shop","Shop"]
   ];
   function renderNav(active){
     const links = NAV.map(([href,key,txt])=>
@@ -110,7 +109,6 @@
           <a href="what-we-make.html">What We Make</a>
           <a href="our-network.html">Our Network</a>
           <a href="materials.html">Materials</a>
-          <a href="industries.html">Industries</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
           <a href="shop.html">All Materials</a>
@@ -126,7 +124,7 @@
         </div>
       </div>
       <div class="foot-bottom">
-        <span>&copy; 2026 ADDITIVE EDGE — ALL RIGHTS RESERVED</span>
+        <span>&copy; 2026 ADDITIVE EDGE - ALL RIGHTS RESERVED</span>
         <span>ADDITIVE MANUFACTURING // IN-HOUSE + NETWORK</span>
       </div>
     </div></footer>`;

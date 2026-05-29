@@ -125,6 +125,8 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 
 /* ---------- CARDS ---------- */
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.material-category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.material-category-grid .card:last-child{grid-column:1 / -1}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .card{border:1px solid var(--line);border-radius:11px;padding:30px;background:var(--bg-2);transition:.3s var(--ease);position:relative;overflow:hidden}
 .card:hover{border-color:var(--accent);transform:translateY(-4px)}
@@ -133,6 +135,13 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 .card p{color:var(--dim);font-size:14.5px}
 .card .bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
 .card:hover .bar{transform:scaleY(1)}
+
+.materials-grid{display:grid;grid-template-columns:repeat( auto-fit, minmax(280px, 1fr) );gap:22px;margin-top:24px}
+.material-family{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--bg-2)}
+.material-family h3{font-size:22px;margin-bottom:18px}
+.material-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px}
+.material-item{border:1px solid var(--line);border-radius:12px;padding:16px 12px;min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);background:rgba(255,255,255,.03);transition:.25s var(--ease)}
+.material-item:hover{border-color:var(--accent);background:rgba(61,110,224,.08)}
 
 /* ---------- SPEC LIST ---------- */
 .specs{border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -273,14 +282,14 @@ footer{background:var(--panel);border-top:1px solid var(--line);padding:60px 0 3
 @media(max-width:880px){
   .hero-grid,.net-grid,.quote-grid,.ind,.flag,.pd-grid,.cart-wrap{grid-template-columns:1fr}
   .render,.pd-vis{max-width:380px;margin:0 auto;position:static}
-  .grid-3,.steps,.shop-grid{grid-template-columns:1fr 1fr}
+  .grid-3,.material-category-grid,.steps,.shop-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
   .wrap{padding:0 20px}
   section,.page-hero{padding-left:0;padding-right:0}
   section{padding:60px 0}
-  .grid-3,.grid-2,.steps,.frow,.foot-grid,.shop-grid{grid-template-columns:1fr}
+  .grid-3,.grid-2,.material-category-grid,.steps,.frow,.foot-grid,.shop-grid{grid-template-columns:1fr}
   .step{border-right:none;border-bottom:1px solid var(--line)}
   .spec-row,.pd-prop{grid-template-columns:1fr;gap:6px}
   .nav .btn-primary{display:none}
