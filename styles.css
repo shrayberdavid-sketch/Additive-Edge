@@ -188,7 +188,7 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 
 /* ---------- PRODUCT DETAIL ---------- */
 .pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.pd-vis{position:sticky;top:96px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 50% 35%,var(--bg-3),var(--panel));aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pd-vis{position:sticky;top:96px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 50% 35%,var(--bg-3),var(--panel));aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pd-eyebrow{color:var(--accent)}
 .pd-title{font-size:clamp(40px,6vw,72px);margin:14px 0 16px}
 .pd-lede{color:var(--dim);font-size:17px;margin-bottom:24px}
