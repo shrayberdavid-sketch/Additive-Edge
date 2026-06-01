@@ -3,11 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get a Quote - Additive Edge</title>
+<title>Request a Print - Additive Edge</title>
+<meta name="description" content="Start your print request with Additive Edge. Share part details, material preferences and timeline, and we'll recommend the optimal additive production path.">
+<link rel="canonical" href="/quote.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Request a Print - Additive Edge">
+<meta property="og:description" content="Start your print request with Additive Edge. Share part details, material preferences and timeline, and we'll recommend the optimal additive production path.">
+<meta property="og:url" content="https://shrayberdavid-sketch.github.io/Additive-Edge/quote.html">
+<meta property="og:image" content="https://shrayberdavid-sketch.github.io/Additive-Edge/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Request a Print - Additive Edge">
+<meta name="twitter:description" content="Start your print request with Additive Edge. Share part details, material preferences and timeline, and we'll recommend the optimal additive production path.">
+<meta name="twitter:image" content="https://shrayberdavid-sketch.github.io/Additive-Edge/og-image.svg">
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Additive Edge",
+  "url":"https://shrayberdavid-sketch.github.io/Additive-Edge/",
+  "telephone":"+1-617-331-6266",
+  "email":"david@additive-edge.com",
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Sharon",
+    "addressRegion":"MA",
+    "postalCode":"02067",
+    "addressCountry":"US"
+  },
+  "areaServed":"US"
+}</script>
 </head>
 <body data-page="quote">
 <div id="nav-root"></div>
@@ -15,7 +44,7 @@
 
   <section class="page-hero">
     <div class="wrap">
-      <span class="label">Get a Quote</span>
+      <span class="label">Request a Print</span>
       <h1>Start a project</h1>
       <p class="sub">Tell us about your part. We'll come back with the best way to produce it - process, material and timeline.</p>
     </div>
@@ -25,21 +54,26 @@
     <div class="wrap">
       <div class="quote-grid">
         <div class="reveal">
-          <div class="frow">
-            <div class="field"><label>Name</label><input id="f-name" type="text" placeholder="Your name"></div>
-            <div class="field"><label>Company</label><input id="f-co" type="text" placeholder="Company"></div>
-          </div>
-          <div class="field"><label>Email</label><input id="f-email" type="email" placeholder="you@company.com"></div>
-          <div class="field"><label>Part description</label><textarea id="f-part" placeholder="What are you making? Application, key requirements, tolerances…"></textarea></div>
-          <div class="frow">
-            <div class="field"><label>Material</label><input id="f-mat" type="text" placeholder="e.g. Rizium GF, Ataru, PEEK - or 'recommend one'"></div>
-            <div class="field"><label>Quantity</label><input id="f-qty" type="text" placeholder="e.g. 1, 50, 1,000"></div>
-          </div>
-          <div class="field"><label>Timeline</label>
-            <select id="f-time"><option>Standard</option><option>Rush / expedited</option><option>Flexible</option><option>Ongoing / production</option></select>
-          </div>
-          <button class="btn btn-primary btn-lg" id="sendBtn">Send request <span class="arr">&rarr;</span></button>
-          <div class="formnote" id="formnote">Thanks - your request is ready to send. Your email client will open with the details. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+          <form class="quote-form" action="https://formsubmit.co/david@additive-edge.com" method="POST" target="_blank">
+            <input type="hidden" name="_subject" value="Request a Print - Additive Edge">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://shrayberdavid-sketch.github.io/Additive-Edge/quote.html?submitted=true">
+            <div class="frow">
+              <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your name" required></div>
+              <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" type="text" placeholder="Company" required></div>
+            </div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required></div>
+            <div class="field"><label for="f-part">Part description</label><textarea id="f-part" name="part_description" placeholder="What are you making? Application, key requirements, tolerances…" rows="5" required></textarea></div>
+            <div class="frow">
+              <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, Ataru, PEEK - or 'recommend one'" required></div>
+              <div class="field"><label for="f-qty">Quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 1, 50, 1,000" required></div>
+            </div>
+            <div class="field"><label for="f-time">Timeline</label>
+              <select id="f-time" name="timeline" required><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit">Send request <span class="arr">&rarr;</span></button>
+            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+          </form>
         </div>
         <div class="contact-card reveal">
           <span class="label">Direct Contact</span>
@@ -55,21 +89,5 @@
 </main>
 <div id="footer-root"></div>
 <script src="app.js"></script>
-<script>
-  document.getElementById("sendBtn").onclick=function(){
-    const g=id=>(document.getElementById(id).value||"").trim();
-    const body=
-      "Name: "+g("f-name")+"\n"+
-      "Company: "+g("f-co")+"\n"+
-      "Email: "+g("f-email")+"\n\n"+
-      "Part description:\n"+g("f-part")+"\n\n"+
-      "Material: "+g("f-mat")+"\n"+
-      "Quantity: "+g("f-qty")+"\n"+
-      "Timeline: "+g("f-time");
-    const url="mailto:david@additive-edge.com?subject="+encodeURIComponent("Quote request - "+(g("f-co")||g("f-name")||"New part"))+"&body="+encodeURIComponent(body);
-    document.getElementById("formnote").style.display="block";
-    window.location.href=url;
-  };
-</script>
 </body>
 </html>

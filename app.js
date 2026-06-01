@@ -70,7 +70,7 @@
   /* ---- NAV + FOOTER MARKUP ---- */
   const NAV = [
     ["index.html","home","Home"],
-    ["what-we-make.html","capabilities","What We Make"],
+    ["what-we-make.html","capabilities","Capabilities"],
     ["our-network.html","network","Our Network"],
     ["materials.html","materials","Materials"],
     ["about.html","about","About"],
@@ -90,7 +90,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-badge" id="cartBadge">0</span>
         </a>
-        <a class="btn btn-primary" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+        <a class="btn btn-primary" href="quote.html">Request a Print <span class="arr">&rarr;</span></a>
         <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </nav></div></header>`;
@@ -106,7 +106,7 @@
           <p>On-demand 3D-printed parts, produced in-house and across a vetted manufacturing network. Printer- and material-agnostic. Engineering-grade.</p>
         </div>
         <div class="foot-col"><h4>Explore</h4>
-          <a href="what-we-make.html">What We Make</a>
+          <a href="what-we-make.html">Capabilities</a>
           <a href="our-network.html">Our Network</a>
           <a href="materials.html">Materials</a>
         </div>
@@ -120,7 +120,7 @@
           <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>
           <a href="tel:6173316266">617-331-6266</a>
           <a>Sharon, MA 02067</a>
-          <a href="quote.html">Get a Quote</a>
+          <a href="quote.html">Request a Print</a>
         </div>
       </div>
       <div class="foot-bottom">

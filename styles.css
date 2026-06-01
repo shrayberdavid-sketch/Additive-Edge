@@ -75,7 +75,7 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .hero-coords{margin-top:40px;display:flex;gap:30px;flex-wrap:wrap}
 .hero-coords div{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim-2);letter-spacing:.05em}
-.hero-coords b{color:var(--text);display:block;font-size:13px;font-weight:500;margin-bottom:2px}
+.hero-coords b{color:var(--text);display:block;font-size:13px;font-weight:500;margin-bottom:8px}
 .render{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
 .render .frame{position:absolute;inset:0;border:1px solid var(--line);border-radius:12px;background:linear-gradient(160deg,var(--bg-2),var(--panel));overflow:hidden}
 .render .frame::before{content:"";position:absolute;inset:0;opacity:.4;background-image:linear-gradient(var(--line-2) 1px,transparent 1px),linear-gradient(90deg,var(--line-2) 1px,transparent 1px);background-size:28px 28px}
