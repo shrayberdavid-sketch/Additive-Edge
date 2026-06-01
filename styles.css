@@ -1,4 +1,4 @@
-/* ============ ADDITIVE EDGE — SHARED STYLES ============ */
+/* ============ ADDITIVE EDGE - SHARED STYLES ============ */
 :root{
   --bg:#0a0e1a; --bg-2:#121826; --bg-3:#1b2436; --panel:#0b0f1a;
   --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.055);
@@ -64,6 +64,7 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 .page-hero{padding:118px 0 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
 .page-hero h1{font-size:clamp(42px,6vw,80px);margin-top:18px}
 .page-hero .sub{color:var(--dim);font-size:18px;max-width:620px;margin-top:22px}
+.page-hero .hero-list{margin-top:16px;color:var(--dim);font-size:14px;letter-spacing:.08em;text-transform:uppercase;line-height:1.6;max-width:760px}
 
 /* ---------- HERO (home) ---------- */
 .hero{padding:118px 0 88px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
