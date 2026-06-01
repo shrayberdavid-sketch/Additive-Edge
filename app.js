@@ -17,6 +17,12 @@
       prices:{ "500 g":99, "820 g":160 }, priceFrom:99,
       url:"product-rizium-cf.html"
     },
+    "rizium-support": {
+      id:"rizium-support", name:"Rizium Support", type:"filament",
+      tagline:"Copolyester support material - compatible with all RIZIUM® filaments",
+      prices:{ "500 g":75 }, priceFrom:75,
+      url:"product-rizium-support.html"
+    },
     ataru: {
       id:"ataru", name:"Ataru", type:"resin",
       tagline:"High-performance DLP resin · 300°C+ · low dielectric loss",
@@ -114,6 +120,7 @@
           <a href="shop.html">All Materials</a>
           <a href="product-rizium.html">Rizium GF</a>
           <a href="product-rizium-cf.html">Rizium CF</a>
+          <a href="product-rizium-support.html">Rizium Support</a>
           <a href="product-ataru.html">Ataru Resin</a>
         </div>
         <div class="foot-col"><h4>Contact</h4>

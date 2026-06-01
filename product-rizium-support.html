@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizium Support Filament - Additive Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="nav-root"></div>
+<main>
+
+  <section style="padding-top:96px">
+    <div class="wrap">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:34px;letter-spacing:.05em">
+        <a href="shop.html" style="color:var(--dim)">SHOP</a> &nbsp;/&nbsp; <span style="color:var(--accent)">RIZIUM SUPPORT</span>
+      </div>
+      <div class="pd-grid">
+        <div class="pd-vis">
+          <div class="prod-thumb sup" style="position:absolute;inset:0;border:none;border-radius:16px"><span class="ptag">RIZIUM // SUPPORT</span><span class="ptype">COPOLYESTER</span><div class="spool" style="width:200px;height:200px"></div></div>
+        </div>
+        <div>
+          <span class="label pd-eyebrow">Support Material · RIZIUM® Line</span>
+          <h1 class="pd-title">Rizium Support</h1>
+          <p class="pd-lede">A dedicated copolyester support material for the RIZIUM® line - compatible with every Rizium filament. It lays down clean, reliable supports for overhangs and complex geometry, then breaks away to leave a sharp surface on your COC parts. Low moisture pickup means it's ready to print with no drying.</p>
+
+          <div class="pd-price" id="pdPrice">$75.00</div>
+          <div class="pd-price-note" id="pdNote">500 g spool · in stock</div>
+
+          <div class="add-row">
+            <div class="qty">
+              <button id="qDown">&minus;</button>
+              <input id="qVal" type="text" value="1" inputmode="numeric">
+              <button id="qUp">&#43;</button>
+            </div>
+            <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">&rarr;</span></button>
+            <span class="added-note" id="addedNote">&#10003; Added to cart</span>
+          </div>
+
+          <div style="margin-top:28px">
+            <span class="pill on">Works with all Rizium filaments</span><span class="pill on">No drying needed</span><span class="pill on">Non-hazardous</span>
+            <span class="pill">Low VOC</span><span class="pill">Breakaway</span>
+          </div>
+
+          <div class="pd-props">
+            <div class="pd-prop"><div class="pk">Use</div><div class="pv">FFF support material for the RIZIUM® line - pairs with every Rizium filament</div></div>
+            <div class="pd-prop"><div class="pk">Base polymer</div><div class="pv">Copolyester</div></div>
+            <div class="pd-prop"><div class="pk">Process</div><div class="pv">FFF - dual-extrusion / support interface alongside your Rizium model material</div></div>
+            <div class="pd-prop"><div class="pk">Specific gravity</div><div class="pv">≈ 1.20 g/cm³</div></div>
+            <div class="pd-prop"><div class="pk">Softening point</div><div class="pv">&gt; 85°C (&gt; 185°F)</div></div>
+            <div class="pd-prop"><div class="pk">Decomposition temp</div><div class="pv">&gt; 300°C (&gt; 572°F) - low stability hazard at normal print temps</div></div>
+            <div class="pd-prop"><div class="pk">Water solubility</div><div class="pv">Negligible - breakaway support (not water-soluble)</div></div>
+            <div class="pd-prop"><div class="pk">Safety</div><div class="pv">Not a hazardous substance · HMIS Health 1 / Flammability 1 / Physical 0 · no respiratory protection required in normal use</div></div>
+            <div class="pd-prop"><div class="pk">Diameter</div><div class="pv">1.75 mm</div></div>
+            <div class="pd-prop"><div class="pk">Storage</div><div class="pv">Cool, dry, away from direct light</div></div>
+          </div>
+          <!-- VERIFY WITH DAVID: filament diameter (1.75 mm assumed) and recommended print profile for Rizium Support are not in the SDS. Confirm and add a print-profile row + data-sheet PDF when available. -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wrap"><h2>Want us to print it for you?</h2><p>Skip the spool - send the part and we'll produce it in the Rizium material that fits, supports included.</p>
+      <a class="btn btn-primary btn-lg" href="quote.html">Request a Print <span class="arr">&rarr;</span></a></div>
+  </section>
+
+</main>
+<div id="footer-root"></div>
+<script src="app.js"></script>
+<script>
+  (function(){
+    const P = window.AE_PRODUCTS["rizium-support"];
+    const size = "500 g";
+    document.getElementById("pdPrice").textContent = window.AE_money(P.prices[size]);
+    const qVal=document.getElementById("qVal");
+    document.getElementById("qUp").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)+1);
+    document.getElementById("qDown").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)-1);
+    qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
+    document.getElementById("addBtn").onclick=()=>{
+      const qty=Math.max(1,parseInt(qVal.value)||1);
+      window.AE.add(P.id, size, qty, P.prices[size], P.name);
+      const note=document.getElementById("addedNote");
+      note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
+    };
+  })();
+</script>
+</body>
+</html>

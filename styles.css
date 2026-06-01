@@ -305,6 +305,10 @@ footer{background:var(--panel);border-top:1px solid var(--line);padding:60px 0 3
 .prod-thumb.cf .spool{border-color:#23272f;background:repeating-linear-gradient(45deg,#14161b,#14161b 3px,#1e2127 3px,#1e2127 6px);box-shadow:0 0 44px -14px #000,inset 0 0 26px rgba(0,0,0,.7)}
 .prod-thumb.cf .spool::after{background:#0a0b0d}
 .prod-thumb.cf .ptag{color:#8aa0c8}
+.prod-thumb.sup{background:radial-gradient(circle at 50% 40%,#dfe7ea,#9fb4ba)}
+.prod-thumb.sup .spool{border-color:#eef3f5;background:repeating-linear-gradient(45deg,#cdd9dc,#cdd9dc 4px,#e6eef0 4px,#e6eef0 8px);box-shadow:0 0 44px -10px #c2d0d4,inset 0 0 26px rgba(0,0,0,.2)}
+.prod-thumb.sup .ptag{color:#2f4248}
+.prod-thumb.sup .ptype{color:#46595f;border-color:rgba(0,0,0,.18)}
 .ds-btn{margin-top:6px}
 .mech-table{margin-top:14px}
 .mech-table .spec-row{grid-template-columns:1fr 130px 150px}
