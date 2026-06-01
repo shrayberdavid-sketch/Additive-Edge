@@ -54,7 +54,7 @@
     <div class="wrap">
       <div class="quote-grid">
         <div class="reveal">
-          <form class="quote-form" action="https://formsubmit.co/david@additive-edge.com" method="POST" target="_blank">
+          <form class="quote-form" action="https://formsubmit.co/david@additive-edge.com" method="POST" target="_blank" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="Request a Print - Additive Edge">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="https://shrayberdavid-sketch.github.io/Additive-Edge/quote.html?submitted=true">
@@ -64,6 +64,7 @@
             </div>
             <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required></div>
             <div class="field"><label for="f-part">Part description</label><textarea id="f-part" name="part_description" placeholder="What are you making? Application, key requirements, tolerances…" rows="5" required></textarea></div>
+            <div class="field"><label for="f-file">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-file" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 25&nbsp;MB.</small></div>
             <div class="frow">
               <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, Ataru, PEEK - or 'recommend one'" required></div>
               <div class="field"><label for="f-qty">Quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 1, 50, 1,000" required></div>
@@ -72,7 +73,9 @@
               <select id="f-time" name="timeline" required><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
             </div>
             <button class="btn btn-primary btn-lg" type="submit">Send request <span class="arr">&rarr;</span></button>
-            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client - attach your design file above if you have one. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+            <!-- VERIFY WITH DAVID: File uploads route through FormSubmit (free tier ~25MB attachment limit). Confirm this is acceptable, or migrate to a dedicated backend (Formspree/Netlify Forms) for larger CAD files and reliable delivery. -->
+            <!-- VERIFY WITH DAVID: First FormSubmit submission to david@additive-edge.com must be confirmed once via the activation email FormSubmit sends, or submissions will not be delivered. -->
           </form>
         </div>
         <div class="contact-card reveal">
