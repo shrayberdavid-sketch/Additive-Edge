@@ -26,7 +26,7 @@
     ataru: {
       id:"ataru", name:"Ataru", type:"resin",
       tagline:"High-performance DLP resin · 300°C+ · low dielectric loss",
-      prices:{ "1 L":693.00, "5 L":3315.79 }, priceFrom:693,
+      prices:{ "1 L":693.00, "5 L":3316.00 }, priceFrom:693,
       url:"product-ataru.html"
     },
     "ataru-cleaner": {
