@@ -78,11 +78,15 @@ section{padding:96px 0;border-bottom:1px solid var(--line-2)}
 .render .tag{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--dim-2);z-index:5}
 .render .tag.tl{top:16px;left:16px;color:var(--accent)}
 .render .tag.br{bottom:16px;right:16px}
-.stack{position:relative;z-index:4;transform:rotateX(56deg) rotateZ(45deg);transform-style:preserve-3d}
-.layer{position:absolute;border:1.5px solid rgba(61,110,224,.55);background:rgba(61,110,224,.06);border-radius:3px;box-shadow:inset 0 0 18px rgba(61,110,224,.12);animation:build 3.6s var(--ease) infinite;opacity:0}
-@keyframes build{0%{opacity:0;transform:translateZ(var(--z)) scale(.6)}14%,72%{opacity:1;transform:translateZ(var(--z)) scale(1)}92%,100%{opacity:.12;transform:translateZ(var(--z)) scale(1)}}
-.printhead{position:absolute;z-index:6;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px 4px var(--accent);animation:head 3.6s linear infinite}
-@keyframes head{0%{opacity:0}10%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.printer{position:relative;z-index:4;width:98%;height:98%}
+.pr-line{stroke:rgba(61,110,224,.85)}
+.pr-line .pr-dim{stroke:rgba(61,110,224,.32)}
+.pr-bed{stroke:rgba(61,110,224,.6);fill:rgba(61,110,224,.05)}
+.pr-part{filter:drop-shadow(0 0 7px rgba(61,110,224,.5))}
+.pr-layer{fill:rgba(61,110,224,.16);stroke:rgba(125,172,255,.9);stroke-width:1.2}
+.pr-rail{stroke:rgba(61,110,224,.7)}
+.pr-fill{fill:rgba(61,110,224,.2);stroke:var(--accent)}
+.pr-dot{fill:var(--accent);stroke:none;filter:drop-shadow(0 0 7px var(--accent))}
 
 /* ---------- TRUST STRIP ---------- */
 .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-3)}

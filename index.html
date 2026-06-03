@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=5">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -60,9 +60,64 @@
           </div>
         </div>
         <div class="render">
-          <div class="frame"><span class="tag tl">AE-RENDER // BUILD_SIM</span><span class="tag br">REV. 2026.05</span></div>
-          <div class="stack" id="stack"></div>
-          <div class="printhead"></div>
+          <div class="frame"><span class="tag tl">AE-RENDER // FDM_SIM</span><span class="tag br">REV. 2026.05</span></div>
+          <svg class="printer" viewBox="0 0 420 360" role="img" aria-label="Wireframe of an FDM 3D printer printing a part layer by layer" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <clipPath id="pr-grow">
+                <!-- reveal window: grows upward from the bed to expose layers one by one -->
+                <rect x="150" y="300" width="130" height="4">
+                  <animate attributeName="y" values="300;160;160;300;300" keyTimes="0;0.8;0.93;0.931;1" dur="9s" repeatCount="indefinite"/>
+                  <animate attributeName="height" values="4;144;144;4;4" keyTimes="0;0.8;0.93;0.931;1" dur="9s" repeatCount="indefinite"/>
+                </rect>
+              </clipPath>
+            </defs>
+            <g class="pr-line" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <!-- printer frame cube -->
+              <g stroke-width="1.6">
+                <path d="M150 274 L350 274 L350 50 L150 50 Z" class="pr-dim"/>
+                <path d="M96 312 L296 312 L296 88 L96 88 Z"/>
+                <path d="M96 312 L150 274 M296 312 L350 274 M96 88 L150 50 M296 88 L350 50" class="pr-dim"/>
+              </g>
+              <!-- print bed -->
+              <g stroke-width="1.6">
+                <path d="M120 296 L272 296 L326 258 L174 258 Z" class="pr-bed"/>
+                <path d="M120 296 L120 304 L272 304 L272 296 M272 304 L326 266 L326 258" class="pr-dim"/>
+              </g>
+              <!-- part: 12 stacked layers, revealed bottom-up by the clip -->
+              <g class="pr-part" clip-path="url(#pr-grow)">
+                <path class="pr-layer" d="M158 296 L232 296 L266 272 L192 272 Z"/>
+                <path class="pr-layer" d="M158 286 L232 286 L266 262 L192 262 Z"/>
+                <path class="pr-layer" d="M158 276 L232 276 L266 252 L192 252 Z"/>
+                <path class="pr-layer" d="M158 266 L232 266 L266 242 L192 242 Z"/>
+                <path class="pr-layer" d="M158 256 L232 256 L266 232 L192 232 Z"/>
+                <path class="pr-layer" d="M158 246 L232 246 L266 222 L192 222 Z"/>
+                <path class="pr-layer" d="M158 236 L232 236 L266 212 L192 212 Z"/>
+                <path class="pr-layer" d="M158 226 L232 226 L266 202 L192 202 Z"/>
+                <path class="pr-layer" d="M158 216 L232 216 L266 192 L192 192 Z"/>
+                <path class="pr-layer" d="M158 206 L232 206 L266 182 L192 182 Z"/>
+                <path class="pr-layer" d="M158 196 L232 196 L266 172 L192 172 Z"/>
+                <path class="pr-layer" d="M158 186 L232 186 L266 162 L192 162 Z"/>
+              </g>
+              <!-- X gantry: rises with the part; carriage sweeps as it prints -->
+              <g class="pr-gantry">
+                <animateTransform attributeName="transform" type="translate"
+                  values="0 0; 0 -110; 0 -110; 0 0; 0 0" keyTimes="0;0.8;0.93;0.931;1"
+                  dur="9s" calcMode="spline"
+                  keySplines="0.25 0 0.4 1;0 0 1 1;0 0 1 1;0 0 1 1"
+                  repeatCount="indefinite"/>
+                <path d="M123 260 L323 260" class="pr-rail" stroke-width="2"/>
+                <g class="pr-carriage">
+                  <animateTransform attributeName="transform" type="translate"
+                    values="-32 0; 32 0; -32 0" keyTimes="0;0.5;1" dur="1.4s"
+                    calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+                    repeatCount="indefinite"/>
+                  <rect x="179" y="264" width="32" height="18" rx="2" stroke-width="1.6" class="pr-fill"/>
+                  <path d="M183 282 L207 282 L195 296 Z" stroke-width="1.6" class="pr-fill"/>
+                  <circle cx="195" cy="296" r="2.6" class="pr-dot"/>
+                </g>
+              </g>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -160,6 +215,6 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

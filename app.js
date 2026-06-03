@@ -383,7 +383,6 @@
 
     AE.badge();
     initReveal();
-    buildStack();
 
     /* load any existing Shopify cart, then refresh badge + drawer */
     AE.ensure().then(()=>AE.render()).catch(err=>console.error(err));
@@ -434,21 +433,6 @@
       ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
     },{threshold:.12});
     els.forEach(e=>io.observe(e));
-  }
-
-  function buildStack(){
-    const stack = document.getElementById("stack");
-    if(!stack) return;
-    const n=9;
-    for(let i=0;i<n;i++){
-      const d=document.createElement("div"); d.className="layer";
-      const s=1-Math.abs(i-n/2)/(n*1.1); const sz=70+s*70;
-      d.style.setProperty("--z",((i-n/2)*16)+"px");
-      d.style.animationDelay=(i*0.18)+"s";
-      d.style.width=sz+"px"; d.style.height=sz+"px";
-      d.style.left=(-sz/2)+"px"; d.style.top=(-sz/2)+"px";
-      stack.appendChild(d);
-    }
   }
 
   window.AE_money = money;
