@@ -37,6 +37,17 @@
   },
   "areaServed":"US"
 }</script>
+<style>
+  /* Conditional-form additions — scoped to the quote form, built on existing tokens/classes */
+  .quote-form .branch{display:none}
+  .quote-form .branch.active{display:block;animation:branchIn .28s ease both}
+  @keyframes branchIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .quote-form .branch.active{animation:none}
+  }
+  /* honeypot: visually hidden but reachable for bots, never tab-focusable */
+  .quote-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
 </head>
 <body data-page="quote">
 <div id="nav-root"></div>
@@ -46,7 +57,7 @@
     <div class="wrap">
       <span class="label">Request a Print</span>
       <h1>Start a project</h1>
-      <p class="sub">Tell us about your part. We'll come back with the best way to produce it - process, material and timeline.</p>
+      <p class="sub">Tell us what you need. Pick a subject and we'll ask only the questions that matter - then come back with the best way to move it forward.</p>
     </div>
   </section>
 
@@ -55,26 +66,91 @@
       <div class="quote-grid">
         <div class="reveal">
           <form class="quote-form" action="https://formsubmit.co/david@additive-edge.com" method="POST" target="_blank" enctype="multipart/form-data">
-            <input type="hidden" name="_subject" value="Request a Print - Additive Edge">
+            <input type="hidden" name="_subject" value="New request - Additive Edge">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="https://shrayberdavid-sketch.github.io/Additive-Edge/quote.html?submitted=true">
+            <input type="hidden" name="_template" value="table">
+            <!-- honeypot: bots fill this, humans never see it; FormSubmit drops submissions that fill _honey -->
+            <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+            <!-- Subject selector drives which branch shows -->
+            <div class="field">
+              <label for="f-subject">What can we help with?</label>
+              <select id="f-subject" name="subject" required>
+                <option value="" selected disabled>Select a subject…</option>
+                <option value="Part prototype / production">Part prototype / production</option>
+                <option value="Material needs">Material needs</option>
+                <option value="Help with a project">Help with a project</option>
+                <option value="Consultation">Consultation</option>
+              </select>
+            </div>
+
+            <!-- Shared contact fields — always visible -->
             <div class="frow">
               <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your name" required></div>
               <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" type="text" placeholder="Company" required></div>
             </div>
-            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required></div>
-            <div class="field"><label for="f-part">Part description</label><textarea id="f-part" name="part_description" placeholder="What are you making? Application, key requirements, tolerances…" rows="5" required></textarea></div>
-            <div class="field"><label for="f-file">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-file" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 25&nbsp;MB.</small></div>
             <div class="frow">
-              <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, Ataru, PEEK - or 'recommend one'" required></div>
-              <div class="field"><label for="f-qty">Quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 1, 50, 1,000" required></div>
+              <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required></div>
+              <div class="field"><label for="f-phone">Phone <span style="color:var(--dim)">(optional)</span></label><input id="f-phone" name="phone" type="tel" placeholder="617-555-0100"></div>
             </div>
-            <div class="field"><label for="f-time">Timeline</label>
-              <select id="f-time" name="timeline" required><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
+
+            <!-- ===== BRANCH: Part prototype / production ===== -->
+            <div class="branch" data-branch="Part prototype / production">
+              <div class="field"><label for="f-part">Part description</label><textarea id="f-part" name="part_description" placeholder="What are you making? Application, key requirements, tolerances…" rows="5" data-req></textarea></div>
+              <div class="field"><label for="f-file">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-file" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 10&nbsp;MB. Larger file or full assembly? Note it below and email it to david@additive-edge.com, or paste a Drive/Dropbox link in the description.</small></div>
+              <div class="frow">
+                <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, PEEK - or 'recommend one'" data-req></div>
+                <div class="field"><label for="f-qty">Quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 1, 50, 1,000" data-req></div>
+              </div>
+              <div class="field"><label for="f-tol">Tolerances / finish notes <span style="color:var(--dim)">(optional)</span></label><input id="f-tol" name="tolerances" type="text" placeholder="Critical dimensions, surface finish, post-processing"></div>
+              <div class="field"><label for="f-time">Timeline</label>
+                <select id="f-time" name="timeline" data-req><option value="" selected disabled>Select…</option><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
+              </div>
             </div>
+
+            <!-- ===== BRANCH: Material needs ===== -->
+            <div class="branch" data-branch="Material needs">
+              <div class="field"><label for="f-mat2">Which material(s)?</label><input id="f-mat2" name="material_interest" type="text" placeholder="e.g. Rizium GF, Ataru resin - or describe the requirement" data-req></div>
+              <div class="frow">
+                <div class="field"><label for="f-vol">Quantity / volume</label><input id="f-vol" name="material_volume" type="text" placeholder="e.g. 2 spools, 5 L, ongoing supply" data-req></div>
+                <div class="field"><label for="f-recur">One-time or recurring?</label>
+                  <select id="f-recur" name="supply_type" data-req><option value="" selected disabled>Select…</option><option value="One-time order">One-time order</option><option value="Recurring / production supply">Recurring / production supply</option><option value="Not sure yet">Not sure yet</option></select>
+                </div>
+              </div>
+              <div class="field"><label for="f-matnotes">Notes <span style="color:var(--dim)">(optional)</span></label><textarea id="f-matnotes" name="material_notes" placeholder="Application, properties you're targeting, anything else." rows="4"></textarea></div>
+            </div>
+
+            <!-- ===== BRANCH: Help with a project ===== -->
+            <div class="branch" data-branch="Help with a project">
+              <div class="field"><label for="f-proj">Project description</label><textarea id="f-proj" name="project_description" placeholder="What are you trying to accomplish?" rows="5" data-req></textarea></div>
+              <div class="field"><label for="f-stage">Current stage</label>
+                <select id="f-stage" name="project_stage" data-req><option value="" selected disabled>Select…</option><option value="Idea / concept">Idea / concept</option><option value="Design in progress">Design in progress</option><option value="Have files, need production">Have files, need production</option><option value="In production, hitting issues">In production, hitting issues</option></select>
+              </div>
+              <div class="field"><label for="f-block">What's blocking you? <span style="color:var(--dim)">(optional)</span></label><textarea id="f-block" name="project_blocker" placeholder="Where you're stuck, or what you need from us." rows="4"></textarea></div>
+              <div class="field"><label for="f-pfile">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-pfile" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 10&nbsp;MB. Larger file or full assembly? Email it to david@additive-edge.com, or paste a Drive/Dropbox link in the project description.</small></div>
+            </div>
+
+            <!-- ===== BRANCH: Consultation ===== -->
+            <div class="branch" data-branch="Consultation">
+              <div class="field"><label for="f-topic">What would you like to discuss?</label><textarea id="f-topic" name="consult_topic" placeholder="Adoption strategy, evaluating in-house vs outsourcing, material selection, etc." rows="5" data-req></textarea></div>
+              <div class="frow">
+                <div class="field"><label for="f-team">Team / company size <span style="color:var(--dim)">(optional)</span></label><input id="f-team" name="team_size" type="text" placeholder="e.g. 5, 50, 500+"></div>
+                <div class="field"><label for="f-pref">Preferred contact</label>
+                  <select id="f-pref" name="contact_pref" data-req><option value="" selected disabled>Select…</option><option value="Email">Email</option><option value="Phone call">Phone call</option><option value="Video call">Video call</option></select>
+                </div>
+              </div>
+              <div class="field"><label for="f-avail">Best times to reach you <span style="color:var(--dim)">(optional)</span></label><input id="f-avail" name="availability" type="text" placeholder="e.g. weekday mornings ET"></div>
+            </div>
+
             <button class="btn btn-primary btn-lg" type="submit">Send request <span class="arr">&rarr;</span></button>
-            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client - attach your design file above if you have one. Or reach us directly at <b>david@additive-edge.com</b>.</div>
-            <!-- VERIFY WITH DAVID: File uploads route through FormSubmit (free tier ~25MB attachment limit). Confirm this is acceptable, or migrate to a dedicated backend (Formspree/Netlify Forms) for larger CAD files and reliable delivery. -->
+            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+            <!-- FILE UPLOADS: FormSubmit's free tier caps the SUM of all file inputs at 10MB total (not 25MB).
+                 This is a hard limit on FormSubmit's side and cannot be raised from this form.
+                 Email also caps attachments (~20-25MB after Base64 encoding), so large CAD assemblies
+                 should be emailed directly or shared as a Drive/Dropbox link (see the upload field hint).
+                 If David later needs reliable large-file intake, migrate to a storage-backed backend
+                 that emails a download link instead of attaching the file. -->
             <!-- VERIFY WITH DAVID: First FormSubmit submission to david@additive-edge.com must be confirmed once via the activation email FormSubmit sends, or submissions will not be delivered. -->
           </form>
         </div>
@@ -92,5 +168,43 @@
 </main>
 <div id="footer-root"></div>
 <script src="app.js?v=3"></script>
+<script>
+(function(){
+  var form = document.querySelector('.quote-form');
+  if(!form) return;
+  var subject = form.querySelector('#f-subject');
+  var branches = Array.prototype.slice.call(form.querySelectorAll('.branch'));
+
+  // Enable/disable fields per branch so hidden fields neither validate nor submit.
+  // We toggle `required` (from data-req) and `disabled` together.
+  function setBranchState(branchEl, on){
+    branchEl.classList.toggle('active', on);
+    var fields = branchEl.querySelectorAll('input, select, textarea');
+    Array.prototype.forEach.call(fields, function(el){
+      if(on){
+        el.disabled = false;
+        if(el.hasAttribute('data-req')) el.required = true;
+      } else {
+        el.required = false;
+        el.disabled = true; // disabled fields are excluded from submission
+      }
+    });
+  }
+
+  function showBranch(value){
+    branches.forEach(function(b){
+      setBranchState(b, b.getAttribute('data-branch') === value);
+    });
+  }
+
+  // Start with all branches disabled so nothing hidden is submitted/validated.
+  branches.forEach(function(b){ setBranchState(b, false); });
+
+  subject.addEventListener('change', function(){ showBranch(subject.value); });
+
+  // If returning with a remembered selection (bfcache), re-apply.
+  if(subject.value) showBranch(subject.value);
+})();
+</script>
 </body>
 </html>
