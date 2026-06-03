@@ -298,8 +298,7 @@
       `<a href="${href}"${key===active?' class="active"':''}>${txt}</a>`).join("");
     return `<header><div class="wrap"><nav class="nav">
       <a class="brand" href="index.html">
-        <span class="mark"><span></span><span></span><span></span></span>
-        <b>ADDITIVE<i>EDGE</i></b>
+        <b>ADDITIVE <i>EDGE</i></b>
       </a>
       <div class="nav-right">
         <div class="nav-links" id="navlinks">${links}</div>
@@ -317,8 +316,7 @@
       <div class="foot-grid">
         <div>
           <a class="brand" href="index.html" style="display:inline-flex">
-            <span class="mark"><span></span><span></span><span></span></span>
-            <b>ADDITIVE<i>EDGE</i></b>
+            <b>ADDITIVE <i>EDGE</i></b>
           </a>
           <p>On-demand 3D-printed parts, produced in-house and across a vetted manufacturing network. Printer- and material-agnostic. Engineering-grade.</p>
         </div>

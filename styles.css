@@ -25,14 +25,9 @@ h1,h2,h3{font-family:'Saira Condensed',sans-serif;font-weight:700;line-height:.9
 /* ---------- NAV ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.74);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:11px;cursor:pointer}
-.brand .mark{width:26px;height:26px;position:relative;flex:0 0 auto}
-.brand .mark span{position:absolute;left:0;right:0;height:3px;background:var(--accent);border-radius:1px}
-.brand .mark span:nth-child(1){top:3px;opacity:.45}
-.brand .mark span:nth-child(2){top:10px;opacity:.75}
-.brand .mark span:nth-child(3){top:17px}
-.brand b{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:.06em;text-transform:uppercase}
-.brand b i{color:var(--accent);font-style:normal}
+.brand{display:flex;align-items:center;cursor:pointer}
+.brand b{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:23px;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.brand b i{color:#fff;font-style:normal}
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:var(--dim);padding:9px 11px;border-radius:6px;transition:color .2s,background .2s;cursor:pointer;white-space:nowrap}
