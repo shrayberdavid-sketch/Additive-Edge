@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
-<body data-page="shop">
+<body data-page="shop" data-product="ataru">
 <div id="nav-root"></div>
 <main>
 
@@ -43,8 +43,7 @@
               <input id="qVal" type="text" value="1" inputmode="numeric">
               <button id="qUp">&#43;</button>
             </div>
-            <button class="btn btn-primary btn-lg" id="addBtn">Add to cart <span class="arr">&rarr;</span></button>
-            <span class="added-note" id="addedNote">&#10003; Added to cart</span>
+            <button class="btn btn-primary" id="aeAddCart">Add to cart <span class="arr">&rarr;</span></button>
           </div>
           <a class="btn btn-ghost ds-btn" href="ATARU-BLACK.pdf" target="_blank" rel="noopener">&#8595; Download data sheet (PDF)</a>
 
@@ -91,35 +90,6 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js"></script>
-<script>
-  (function(){
-    const P = window.AE_PRODUCTS.ataru;
-    let volume = "1 L";
-    const priceEl = document.getElementById("pdPrice");
-    const noteEl = document.getElementById("pdNote");
-    function refresh(){
-      priceEl.textContent = window.AE_money(P.prices[volume]);
-      noteEl.textContent = volume + (volume === "5 L" ? " · ships in one container" : "");
-    }
-    document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(b=>{
-      b.addEventListener("click",()=>{
-        document.querySelectorAll('.opt-row[data-opt="Volume"] .opt').forEach(o=>o.classList.remove("sel"));
-        b.classList.add("sel"); volume = b.textContent.trim(); refresh();
-      });
-    });
-    const qVal=document.getElementById("qVal");
-    document.getElementById("qUp").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)+1);
-    document.getElementById("qDown").onclick=()=>qVal.value=Math.max(1,(parseInt(qVal.value)||1)-1);
-    qVal.oninput=()=>qVal.value=qVal.value.replace(/[^0-9]/g,"");
-    document.getElementById("addBtn").onclick=()=>{
-      const qty=Math.max(1,parseInt(qVal.value)||1);
-      window.AE.add(P.id, volume, qty, P.prices[volume], P.name);
-      const note=document.getElementById("addedNote");
-      note.classList.add("show"); setTimeout(()=>note.classList.remove("show"),2200);
-    };
-    refresh();
-  })();
-</script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
