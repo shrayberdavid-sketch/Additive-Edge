@@ -289,7 +289,6 @@
     ["index.html","home","Home"],
     ["what-we-make.html","capabilities","Capabilities"],
     ["our-network.html","network","Our Network"],
-    ["materials.html","materials","Materials"],
     ["about.html","about","About"],
     ["shop.html","shop","Shop"]
   ];
@@ -323,7 +322,6 @@
         <div class="foot-col"><h4>Explore</h4>
           <a href="what-we-make.html">Capabilities</a>
           <a href="our-network.html">Our Network</a>
-          <a href="materials.html">Materials</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
           <a href="shop.html">All Materials</a>
@@ -383,6 +381,7 @@
 
     AE.badge();
     initReveal();
+    initRibbon();
 
     /* load any existing Shopify cart, then refresh badge + drawer */
     AE.ensure().then(()=>AE.render()).catch(err=>console.error(err));
@@ -424,6 +423,29 @@
         }
       });
     }
+  }
+
+  function initRibbon(){
+    document.querySelectorAll(".ribbon").forEach(rb=>{
+      const track = rb.querySelector(".ribbon-track");
+      const prev  = rb.querySelector(".ribbon-prev");
+      const next  = rb.querySelector(".ribbon-next");
+      if(!track) return;
+      const step = ()=>{
+        const item = track.querySelector(".ribbon-item");
+        return item ? item.getBoundingClientRect().width + 18 : track.clientWidth*0.8;
+      };
+      function updateArrows(){
+        const max = track.scrollWidth - track.clientWidth - 1;
+        if(prev) prev.disabled = track.scrollLeft <= 0;
+        if(next) next.disabled = track.scrollLeft >= max;
+      }
+      if(prev) prev.addEventListener("click", ()=>track.scrollBy({left:-step(), behavior:"smooth"}));
+      if(next) next.addEventListener("click", ()=>track.scrollBy({left: step(), behavior:"smooth"}));
+      track.addEventListener("scroll", updateArrows, {passive:true});
+      window.addEventListener("resize", updateArrows);
+      updateArrows();
+    });
   }
 
   function initReveal(){

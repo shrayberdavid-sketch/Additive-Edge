@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=6">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -47,6 +47,11 @@
   }
   /* honeypot: visually hidden but reachable for bots, never tab-focusable */
   .quote-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  /* AJAX submit states */
+  .quote-form.is-sending button[type=submit]{opacity:.6;pointer-events:none}
+  .formnote.is-error{color:#ff6b6b}
+  .form-success{display:none}
+  .form-success.active{display:block;animation:branchIn .28s ease both}
 </style>
 </head>
 <body data-page="quote">
@@ -65,18 +70,25 @@
     <div class="wrap">
       <div class="quote-grid">
         <div class="reveal">
-          <form class="quote-form" action="https://formsubmit.co/david@additive-edge.com" method="POST" target="_blank" enctype="multipart/form-data">
-            <input type="hidden" name="_subject" value="New request - Additive Edge">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://shrayberdavid-sketch.github.io/Additive-Edge/quote.html?submitted=true">
-            <input type="hidden" name="_template" value="table">
-            <!-- honeypot: bots fill this, humans never see it; FormSubmit drops submissions that fill _honey -->
-            <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+          <!-- Backend: Web3Forms (https://web3forms.com) — submissions POST to api.web3forms.com and are
+               emailed to david@additive-edge.com (the address tied to the access_key below). No per-form
+               activation, no Cloudflare challenge on submit. Reply-to is auto-set from the `email` field
+               so David can reply directly to senders. To change the destination inbox, generate a new key
+               at web3forms.com and replace the access_key value. -->
+          <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms required key (public, safe in client HTML) — tied to david@additive-edge.com. -->
+            <input type="hidden" name="access_key" value="066527ff-3a8f-4ee1-808d-999bc1138a8d">
+            <!-- Email subject line; updated dynamically from the request-type selector below. -->
+            <input type="hidden" name="subject" id="f-emailsubject" value="New request - Additive Edge">
+            <input type="hidden" name="from_name" value="Additive Edge Website">
+            <!-- honeypot: bots tick this hidden checkbox; Web3Forms drops any submission where it's checked -->
+            <label class="hp" aria-hidden="true">Leave this empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
 
-            <!-- Subject selector drives which branch shows -->
+            <!-- Request-type selector drives which branch shows. Named request_type (NOT subject) so it
+                 doesn't override the Web3Forms email subject line. -->
             <div class="field">
               <label for="f-subject">What can we help with?</label>
-              <select id="f-subject" name="subject" required>
+              <select id="f-subject" name="request_type" required>
                 <option value="" selected disabled>Select a subject…</option>
                 <option value="Part prototype / production">Part prototype / production</option>
                 <option value="Material needs">Material needs</option>
@@ -98,15 +110,15 @@
             <!-- ===== BRANCH: Part prototype / production ===== -->
             <div class="branch" data-branch="Part prototype / production">
               <div class="field"><label for="f-part">Part description</label><textarea id="f-part" name="part_description" placeholder="What are you making? Application, key requirements, tolerances…" rows="5" data-req></textarea></div>
-              <div class="field"><label for="f-file">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-file" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 10&nbsp;MB. Larger file or full assembly? Note it below and email it to david@additive-edge.com, or paste a Drive/Dropbox link in the description.</small></div>
+              <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, PEEK - or 'recommend one'" data-req></div>
               <div class="frow">
-                <div class="field"><label for="f-mat">Material</label><input id="f-mat" name="material" type="text" placeholder="e.g. Rizium GF, PEEK - or 'recommend one'" data-req></div>
                 <div class="field"><label for="f-qty">Quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 1, 50, 1,000" data-req></div>
+                <div class="field"><label for="f-time">Timeline</label>
+                  <select id="f-time" name="timeline" data-req><option value="" selected disabled>Select…</option><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
+                </div>
               </div>
               <div class="field"><label for="f-tol">Tolerances / finish notes <span style="color:var(--dim)">(optional)</span></label><input id="f-tol" name="tolerances" type="text" placeholder="Critical dimensions, surface finish, post-processing"></div>
-              <div class="field"><label for="f-time">Timeline</label>
-                <select id="f-time" name="timeline" data-req><option value="" selected disabled>Select…</option><option value="Standard">Standard</option><option value="Rush / expedited">Rush / expedited</option><option value="Flexible">Flexible</option><option value="Ongoing / production">Ongoing / production</option></select>
-              </div>
+              <div class="field"><label for="f-link">CAD file</label><input id="f-link" name="file_link" type="text" placeholder="Paste a Drive/Dropbox link, or email the file to david@additive-edge.com"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF. Share a Drive/Dropbox link here, or email your file to <b>david@additive-edge.com</b> and we'll match it to your request.</small></div>
             </div>
 
             <!-- ===== BRANCH: Material needs ===== -->
@@ -128,7 +140,7 @@
                 <select id="f-stage" name="project_stage" data-req><option value="" selected disabled>Select…</option><option value="Idea / concept">Idea / concept</option><option value="Design in progress">Design in progress</option><option value="Have files, need production">Have files, need production</option><option value="In production, hitting issues">In production, hitting issues</option></select>
               </div>
               <div class="field"><label for="f-block">What's blocking you? <span style="color:var(--dim)">(optional)</span></label><textarea id="f-block" name="project_blocker" placeholder="Where you're stuck, or what you need from us." rows="4"></textarea></div>
-              <div class="field"><label for="f-pfile">Upload a file <span style="color:var(--dim)">(optional)</span></label><input id="f-pfile" name="attachment" type="file" accept=".stl,.step,.stp,.iges,.igs,.3mf,.obj,.pdf,.zip,.png,.jpg,.jpeg"><small style="color:var(--dim)">STL, STEP, 3MF, OBJ, PDF or image. Max 10&nbsp;MB. Larger file or full assembly? Email it to david@additive-edge.com, or paste a Drive/Dropbox link in the project description.</small></div>
+              <div class="field"><label for="f-plink">File / link <span style="color:var(--dim)">(optional)</span></label><input id="f-plink" name="project_file_link" type="text" placeholder="Paste a Drive/Dropbox link, or email the file to david@additive-edge.com"><small style="color:var(--dim)">Got files? Paste a Drive/Dropbox link here, or email them to <b>david@additive-edge.com</b>.</small></div>
             </div>
 
             <!-- ===== BRANCH: Consultation ===== -->
@@ -144,15 +156,20 @@
             </div>
 
             <button class="btn btn-primary btn-lg" type="submit">Send request <span class="arr">&rarr;</span></button>
-            <div class="formnote" id="formnote">This form submits securely without requiring a desktop email client. Or reach us directly at <b>david@additive-edge.com</b>.</div>
-            <!-- FILE UPLOADS: FormSubmit's free tier caps the SUM of all file inputs at 10MB total (not 25MB).
-                 This is a hard limit on FormSubmit's side and cannot be raised from this form.
-                 Email also caps attachments (~20-25MB after Base64 encoding), so large CAD assemblies
-                 should be emailed directly or shared as a Drive/Dropbox link (see the upload field hint).
-                 If David later needs reliable large-file intake, migrate to a storage-backed backend
-                 that emails a download link instead of attaching the file. -->
-            <!-- VERIFY WITH DAVID: First FormSubmit submission to david@additive-edge.com must be confirmed once via the activation email FormSubmit sends, or submissions will not be delivered. -->
+            <div class="formnote" id="formnote">This form submits securely - no desktop email client needed. Or reach us directly at <b>david@additive-edge.com</b>.</div>
+            <!-- FILE UPLOADS: this form posts to Web3Forms' FREE tier, which does NOT accept file attachments
+                 (attachments are a Web3Forms PRO feature, capped at 5MB even then). So large CAD files are
+                 NOT uploaded through the form — users share a Drive/Dropbox link or email the file directly
+                 (see the file_link fields). This is the storage-backed-link approach: reliable for any size.
+                 If David later wants in-form uploads, upgrade to Web3Forms PRO (5MB) or a storage-backed
+                 backend that emails a download link. -->
           </form>
+          <!-- Inline success state, shown after a successful AJAX submission -->
+          <div class="contact-card form-success" id="form-success" role="status" aria-live="polite">
+            <span class="label">Request sent</span>
+            <h2 style="margin:.2em 0">Thanks - we've got it.</h2>
+            <p>We'll review your request and get back to you shortly. Need to add a file? Email it to <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>.</p>
+          </div>
         </div>
         <div class="contact-card reveal">
           <span class="label">Direct Contact</span>
@@ -167,16 +184,19 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=5"></script>
 <script>
 (function(){
   var form = document.querySelector('.quote-form');
   if(!form) return;
   var subject = form.querySelector('#f-subject');
+  var emailSubject = form.querySelector('#f-emailsubject');
   var branches = Array.prototype.slice.call(form.querySelectorAll('.branch'));
+  var note = document.getElementById('formnote');
+  var success = document.getElementById('form-success');
 
   // Enable/disable fields per branch so hidden fields neither validate nor submit.
-  // We toggle `required` (from data-req) and `disabled` together.
+  // FormData excludes disabled controls, so the email only contains the active branch.
   function setBranchState(branchEl, on){
     branchEl.classList.toggle('active', on);
     var fields = branchEl.querySelectorAll('input, select, textarea');
@@ -186,24 +206,63 @@
         if(el.hasAttribute('data-req')) el.required = true;
       } else {
         el.required = false;
-        el.disabled = true; // disabled fields are excluded from submission
+        el.disabled = true;
       }
     });
   }
 
   function showBranch(value){
-    branches.forEach(function(b){
-      setBranchState(b, b.getAttribute('data-branch') === value);
-    });
+    branches.forEach(function(b){ setBranchState(b, b.getAttribute('data-branch') === value); });
+    // Make the email subject line reflect the request type.
+    if(emailSubject) emailSubject.value = value ? ('New request: ' + value + ' - Additive Edge') : 'New request - Additive Edge';
   }
 
-  // Start with all branches disabled so nothing hidden is submitted/validated.
   branches.forEach(function(b){ setBranchState(b, false); });
-
   subject.addEventListener('change', function(){ showBranch(subject.value); });
 
-  // If returning with a remembered selection (bfcache), re-apply.
+  // Deep-link support: links like quote.html?subject=Material%20needs preselect a request type.
+  var preset = new URLSearchParams(window.location.search).get('subject');
+  if(preset){
+    var match = Array.prototype.find.call(subject.options, function(o){ return o.value === preset; });
+    if(match) subject.value = preset;
+  }
   if(subject.value) showBranch(subject.value);
+
+  // AJAX submit to Web3Forms — stays on page, shows inline success/error.
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    form.classList.add('is-sending');
+    if(note){ note.classList.remove('is-error'); note.textContent = 'Sending…'; }
+
+    var data = new FormData(form);
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
+    .then(function(r){
+      form.classList.remove('is-sending');
+      if(r.ok && r.json.success){
+        form.style.display = 'none';
+        if(success) success.classList.add('active');
+      } else {
+        if(note){
+          note.classList.add('is-error');
+          note.innerHTML = (r.json && r.json.message ? r.json.message : 'Something went wrong.') +
+            ' Please email us directly at <b>david@additive-edge.com</b>.';
+        }
+      }
+    })
+    .catch(function(){
+      form.classList.remove('is-sending');
+      if(note){
+        note.classList.add('is-error');
+        note.innerHTML = 'Network error - please email us directly at <b>david@additive-edge.com</b>.';
+      }
+    });
+  });
 })();
 </script>
 </body>

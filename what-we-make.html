@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=6">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -57,7 +57,104 @@
         <div class="spec-row"><div class="sk">BMD</div><div class="sv">Metal extrusion printing <small>FFF-style metal filament deposition for near-net-shape metal parts and simpler geometry.</small></div></div>
         <div class="spec-row"><div class="sk">Wire-Arc / WAAM</div><div class="sv">Wire-welding metal deposition <small>Large-format, near-net-shape metal parts at production economics.</small></div></div>
       </div>
-      <div style="margin-top:30px" class="reveal"><a class="btn btn-ghost" href="materials.html">Click here to check out the material list <span class="arr">&rarr;</span></a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="label">Material Specifications</span><h2>General material characteristics</h2>
+        <p>These categories summarize the core properties we use to match materials to your part's application.</p></div>
+      <div class="specs reveal">
+        <div class="spec-row"><div class="sk">Polymers</div><div class="sv">Good surface finish, chemical resistance, and impact strength; ideal for functional prototypes, jigs, fixtures and end-use parts.</div></div>
+        <div class="spec-row"><div class="sk">Composites</div><div class="sv">Enhanced stiffness and strength with reduced warping and thermal expansion; suited for structural components and lightweight assemblies.</div></div>
+        <div class="spec-row"><div class="sk">Ceramics</div><div class="sv">High-temperature stability, abrasion resistance and electrical insulation; used for tooling, wear parts and precision electrical components.</div></div>
+        <div class="spec-row"><div class="sk">Metals</div><div class="sv">Strong, heat-resistant and durable; supporting load-bearing parts, fixtures, housings and metal prototypes with alloys like Titanium, 316L, 17-4, H13, Copper and Inconel 718.</div></div>
+        <div class="spec-row"><div class="sk">Specialty prints</div><div class="sv">Custom-engineered materials for flexibility, castability, conductivity, biocompatibility and other advanced functional requirements.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="materials-families reveal">
+        <div class="sec-head"><span class="label">Materials</span><h2>Choose materials by category</h2>
+          <p>Explore the complete material list for each family, with the most common engineering-grade options we offer.</p></div>
+        <div class="materials-grid">
+          <div class="material-family">
+            <h3>Metals</h3>
+            <div class="material-list">
+              <div class="material-item">Titanium</div>
+              <div class="material-item">316L Stainless Steel</div>
+              <div class="material-item">17-4 Stainless Steel</div>
+              <div class="material-item">H13 Tool Steel</div>
+              <div class="material-item">Copper</div>
+              <div class="material-item">Inconel 718</div>
+              <div class="material-item">Inconel 625</div>
+              <div class="material-item">Aluminum</div>
+            </div>
+          </div>
+          <div class="material-family">
+            <h3>Polymers</h3>
+            <div class="material-list">
+              <div class="material-item">PLA</div>
+              <div class="material-item">ABS</div>
+              <div class="material-item">PETG</div>
+              <div class="material-item">ASA</div>
+              <div class="material-item">Ultem</div>
+              <div class="material-item">PEEK</div>
+              <div class="material-item">PEKK</div>
+              <div class="material-item">PA6</div>
+              <div class="material-item">PA12</div>
+              <div class="material-item">PA</div>
+              <div class="material-item">PET</div>
+              <div class="material-item">TPU</div>
+              <div class="material-item">Ataru</div>
+              <div class="material-item">Bioinks</div>
+              <div class="material-item">RG3280</div>
+              <div class="material-item">Tough 2000</div>
+              <div class="material-item">Fabrica D810</div>
+              <div class="material-item">Fabrica P910</div>
+              <div class="material-item">Fabrica T700</div>
+              <div class="material-item">Full Color FDM</div>
+              <div class="material-item">Loctite 3843</div>
+            </div>
+          </div>
+          <div class="material-family">
+            <h3>Composites</h3>
+            <div class="material-list">
+              <div class="material-item">Rizium GF</div>
+              <div class="material-item">Rizium CF</div>
+              <div class="material-item">CF PLA</div>
+              <div class="material-item">CF ABS</div>
+              <div class="material-item">CF Ultem</div>
+              <div class="material-item">CF PEEK</div>
+              <div class="material-item">GF PLA</div>
+              <div class="material-item">GF ABS</div>
+              <div class="material-item">GF Ultem</div>
+              <div class="material-item">GF PEEK</div>
+            </div>
+          </div>
+          <div class="material-family">
+            <h3>Ceramics</h3>
+            <div class="material-list">
+              <div class="material-item">Zirconia</div>
+              <div class="material-item">Alumina</div>
+            </div>
+          </div>
+          <div class="material-family">
+            <h3>Specialty</h3>
+            <div class="material-list">
+              <div class="material-item">Dragonfly PCB Boards</div>
+              <div class="material-item">Silicone</div>
+              <div class="material-item">Foam</div>
+            </div>
+          </div>
+        </div>
+        <div class="materials-cta reveal">
+          <p>If you don't see the material you need, reach out and we'll help you find it.</p>
+          <a class="btn btn-primary" href="quote.html?subject=Material%20needs">Request a Material <span class="arr">&rarr;</span></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -94,6 +191,6 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>
