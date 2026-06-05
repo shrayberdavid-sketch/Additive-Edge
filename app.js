@@ -349,6 +349,10 @@
       <div class="ae-cart-head"><h3>Your cart</h3><button id="aeCartClose" aria-label="Close cart">&times;</button></div>
       <div id="aeCartBody" class="ae-cart-body"></div>
       <div class="ae-cart-foot">
+        <div class="ae-cart-ship-notice">
+          <span aria-hidden="true">&#127758;</span>
+          <p>This shop ships to <strong>North and South American customers only</strong>. If you're outside this region, please reach out in the <a href="quote.html">request a print</a> area and we'll provide a separate quote.</p>
+        </div>
         <div class="ae-cart-subtotal"><span class="k">Subtotal</span><span class="v" id="aeCartSubtotal">$0.00</span></div>
         <button id="aeCartCheckout" class="btn btn-primary" disabled>Checkout <span class="arr">&rarr;</span></button>
         <p class="ae-cart-note">Shipping &amp; taxes calculated at checkout.</p>
