@@ -327,7 +327,6 @@
           <a href="shop.html">All Materials</a>
           <a href="product-rizium.html">Rizium GF</a>
           <a href="product-rizium-cf.html">Rizium CF</a>
-          <a href="product-rizium-support.html">Rizium Support</a>
           <a href="product-ataru.html">Ataru Resin</a>
         </div>
         <div class="foot-col"><h4>Contact</h4>
