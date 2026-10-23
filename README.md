@@ -20,7 +20,8 @@ Static site - plain HTML, CSS, and JavaScript. No build step, no dependencies.
 | `industries.html` | Industries |
 | `about.html` | About |
 | `resources.html` | Resources hub (links to landing pages) |
-| `machine-shop-partnership.html` | Landing page: machine shop partnership |
+| `partnerships.html` | Machine shop partnership landing page (served at `/partnerships`) |
+| `machine-shop-partnership.html` | Redirect to `/partnerships` (old URL) |
 | `quote.html` | Get a Quote |
 | `styles.css` | Shared styles |
 | `app.js` | Shared nav/footer + cart logic + product catalog |
