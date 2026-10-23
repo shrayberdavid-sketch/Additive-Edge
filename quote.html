@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -102,6 +102,7 @@
                 <option value="Material needs">Material needs</option>
                 <option value="Help with a project">Help with a project</option>
                 <option value="Consultation">Consultation</option>
+                <option value="Machine shop partnership">Machine shop partnership</option>
               </select>
             </div>
 
@@ -163,6 +164,18 @@
               <div class="field"><label for="f-avail">Best times to reach you <span style="color:var(--dim)">(optional)</span></label><input id="f-avail" name="availability" type="text" placeholder="e.g. weekday mornings ET"></div>
             </div>
 
+            <!-- ===== BRANCH: Machine shop partnership ===== -->
+            <div class="branch" data-branch="Machine shop partnership">
+              <div class="field"><label for="f-shopcap">Your shop's core capabilities</label><input id="f-shopcap" name="shop_capabilities" type="text" placeholder="e.g. 5-axis milling, Swiss turning, sheet metal" data-req></div>
+              <div class="field"><label for="f-shopwork">What work are you turning away today?</label><textarea id="f-shopwork" name="shop_turned_away" placeholder="Geometries you can't machine, jobs you can't fit into the schedule, materials you don't run…" rows="5" data-req></textarea></div>
+              <div class="frow">
+                <div class="field"><label for="f-shoplt">Current lead time <span style="color:var(--dim)">(optional)</span></label><input id="f-shoplt" name="shop_lead_time" type="text" placeholder="e.g. 6-8 weeks"></div>
+                <div class="field"><label for="f-shoppref">Preferred contact</label>
+                  <select id="f-shoppref" name="shop_contact_pref" data-req><option value="" selected disabled>Select…</option><option value="Email">Email</option><option value="Phone call">Phone call</option><option value="Video call">Video call</option><option value="On-site visit">On-site visit</option></select>
+                </div>
+              </div>
+            </div>
+
             <button class="btn btn-primary btn-lg" type="submit">Send request <span class="arr">&rarr;</span></button>
             <div class="formnote" id="formnote">This form submits securely - no desktop email client needed. Or reach us directly at <b>david@additive-edge.com</b>.</div>
             <!-- FILE UPLOADS: this form posts to Web3Forms' FREE tier, which does NOT accept file attachments
@@ -192,7 +205,7 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 <script>
 (function(){
   var form = document.querySelector('.quote-form');

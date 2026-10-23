@@ -367,3 +367,14 @@ footer{background:var(--panel);border-top:1px solid var(--line);padding:60px 0 3
 .ribbon-prev{left:-12px}
 .ribbon-next{right:-12px}
 @media(max-width:680px){.ribbon-prev{left:4px}.ribbon-next{right:4px}.ribbon-item img{height:200px}}
+
+/* ---- RESOURCES + LANDING PAGES ---- */
+a.card{display:block}
+.card .card-cta{display:inline-block;margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lp-list{list-style:none;margin-top:6px}
+.lp-list li{position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--line-2);color:var(--dim);font-size:15px}
+.lp-list li:last-child{border-bottom:none}
+.lp-list li::before{content:"";position:absolute;left:0;top:21px;width:10px;height:2px;background:var(--accent)}
+.lp-list li b{color:var(--text);font-weight:600}
+.lp-pills{margin-top:6px}
+.lp-pills h3{font-size:19px;margin:22px 0 4px}

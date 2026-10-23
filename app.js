@@ -290,6 +290,7 @@
     ["what-we-make.html","capabilities","Capabilities"],
     ["our-network.html","network","Our Network"],
     ["about.html","about","About"],
+    ["resources.html","resources","Resources"],
     ["shop.html","shop","Shop"]
   ];
   function renderNav(active){
@@ -322,6 +323,7 @@
         <div class="foot-col"><h4>Explore</h4>
           <a href="what-we-make.html">Capabilities</a>
           <a href="our-network.html">Our Network</a>
+          <a href="resources.html">Resources</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
           <a href="shop.html">All Materials</a>

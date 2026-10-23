@@ -19,6 +19,8 @@ Static site - plain HTML, CSS, and JavaScript. No build step, no dependencies.
 | `cart.html` | Cart |
 | `industries.html` | Industries |
 | `about.html` | About |
+| `resources.html` | Resources hub (links to landing pages) |
+| `machine-shop-partnership.html` | Landing page: machine shop partnership |
 | `quote.html` | Get a Quote |
 | `styles.css` | Shared styles |
 | `app.js` | Shared nav/footer + cart logic + product catalog |
