@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=12">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -47,19 +47,20 @@
 }</script>
 </head>
 <body data-page="home">
+<a class="skip-link" href="#main">Skip to content</a>
 <noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make.html">Capabilities</a> | <a href="our-network.html">Our Network</a> | <a href="about.html">About</a> | <a href="shop.html">Shop</a> | <a href="quote.html">Request a Quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
 <div id="nav-root"></div>
-<main>
+<main id="main" tabindex="-1">
 
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
+        <div class="hero-copy">
           <h1 class="label">On-Demand 3D Printing Service</h1>
           <div class="display-title">Your part.<br>Our <span class="accent">network.</span><br>Production-grade.</div>
           <p class="sub">Send us your design. We print it in-house or across a vetted manufacturing network - printer- and material-agnostic - to deliver the right part by the right process, every time.</p>
           <div class="cta-row">
-            <a class="btn btn-primary btn-lg" href="quote.html">Request a Print <span class="arr">→</span></a>
+            <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">→</span></a>
             <a class="btn btn-ghost btn-lg" href="shop.html">Shop materials</a>
           </div>
           <div class="hero-coords">
@@ -144,27 +145,27 @@
   <section>
     <div class="wrap">
       <div class="sec-head reveal"><span class="label">How It Works</span><h2>From file to finished part</h2></div>
-      <div class="steps reveal">
+      <div class="steps m-list reveal">
         <div class="step"><div class="num">01</div><h3>Send your part</h3><p>Describe your part and share critical details; we will reach out to schedule a review meeting and align design, fit, and production intent.</p></div>
         <div class="step"><div class="num">02</div><h3>We match it</h3><p>We suggest the optimal process, material and machine in-house or through our vetted manufacturing network.</p></div>
         <div class="step"><div class="num">03</div><h3>We produce & QA</h3><p>Parts are printed, finished and inspected to engineering-grade standards.</p></div>
-        <div class="step"><div class="num">04</div><h3>We ship</h3><p>Finished, ready-to-use parts arrive at your door. One vendor, one invoice.</p></div>
+        <div class="step"><div class="num">04</div><h3>We ship</h3><p>Finished, ready-to-use parts arrive at your door. One vendor, one invoice. Lead times run from 2 business days to about 4 weeks, depending on material and quantity. We confirm your date with the quote.</p></div>
       </div>
 
       <div class="sec-head reveal" style="margin-top:64px"><span class="label">Example Parts</span></div>
       <div class="ribbon reveal">
         <button class="ribbon-arrow ribbon-prev" type="button" aria-label="Previous parts">&larr;</button>
-        <div class="ribbon-track" id="ribbonTrack">
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_g8tey2g8tey2g8te.jpg" alt="Multicolor anatomical foot-bone model" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_fb1vtkfb1vtkfb1v.jpg" alt="Flexible printed RFID circuit" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_uiomaxuiomaxuiom.jpg" alt="Printed metal gear rack" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_hyis75hyis75hyis.jpg" alt="Polished metal lever with generative-design lattice cutouts" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_r1z71ur1z71ur1z7.jpg" alt="Black knurled cap" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_gbshc0gbshc0gbsh.jpg" alt="Printed metal spur gear" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_lcawbslcawbslcaw.jpg" alt="Spheres with custom printed surface textures" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_ahh8z1ahh8z1ahh8.jpg" alt="Set of white printed cylindrical clamp brackets" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_onj1sjonj1sjonj1.jpg" alt="Black printed H-shaped bracket" loading="lazy"></div>
-          <div class="ribbon-item"><img src="images/Gemini_Generated_Image_suf8vmsuf8vmsuf8.jpg" alt="White printed triangular corner gusset bracket" loading="lazy"></div>
+        <div class="ribbon-track" id="ribbonTrack" tabindex="0" role="region" aria-label="Example parts. Use the arrow keys to scroll.">
+          <div class="ribbon-item"><img src="images/part-anatomical-foot-model.jpg" alt="Multicolor 3D printed anatomical foot bone model by Additive Edge" loading="lazy"><p class="ribbon-cap">Anatomical foot model</p></div>
+          <div class="ribbon-item"><img src="images/part-flexible-rfid-circuit.jpg" alt="Flexible 3D printed RFID circuit by Additive Edge" loading="lazy"><p class="ribbon-cap">Flexible RFID circuit</p></div>
+          <div class="ribbon-item"><img src="images/part-metal-gear-rack.jpg" alt="3D printed metal gear rack by Additive Edge" loading="lazy"><p class="ribbon-cap">Metal gear rack</p></div>
+          <div class="ribbon-item"><img src="images/part-metal-lattice-lever.jpg" alt="Polished 3D printed metal lever with lattice cutouts by Additive Edge" loading="lazy"><p class="ribbon-cap">Metal lattice lever</p></div>
+          <div class="ribbon-item"><img src="images/part-knurled-cap.jpg" alt="Black 3D printed knurled cap by Additive Edge" loading="lazy"><p class="ribbon-cap">Knurled cap</p></div>
+          <div class="ribbon-item"><img src="images/part-metal-spur-gear.jpg" alt="3D printed metal spur gear by Additive Edge" loading="lazy"><p class="ribbon-cap">Metal spur gear</p></div>
+          <div class="ribbon-item"><img src="images/part-textured-spheres.jpg" alt="3D printed spheres with custom surface textures by Additive Edge" loading="lazy"><p class="ribbon-cap">Textured spheres</p></div>
+          <div class="ribbon-item"><img src="images/part-clamp-brackets.jpg" alt="Set of white 3D printed cylindrical clamp brackets by Additive Edge" loading="lazy"><p class="ribbon-cap">Clamp brackets</p></div>
+          <div class="ribbon-item"><img src="images/part-h-bracket.jpg" alt="Black 3D printed H-shaped bracket by Additive Edge" loading="lazy"><p class="ribbon-cap">H-shaped bracket</p></div>
+          <div class="ribbon-item"><img src="images/part-corner-gusset-bracket.jpg" alt="White 3D printed corner gusset bracket by Additive Edge" loading="lazy"><p class="ribbon-cap">Corner gusset bracket</p></div>
         </div>
         <button class="ribbon-arrow ribbon-next" type="button" aria-label="Next parts">&rarr;</button>
       </div>
@@ -183,7 +184,7 @@
             <li><span class="k">C</span><div><b>Capacity & redundancy</b><p>In-house production plus partner capacity to scale and stay on schedule.</p></div></li>
           </ul>
         </div>
-        <div class="agnostic reveal">
+        <div class="agnostic reveal m-hide">
           <span class="label">Agnostic by design</span>
           <h3>We're not tied to one machine</h3>
           <p>We print in-house and partner widely, so our only loyalty is to the best result for your part.</p>
@@ -200,7 +201,7 @@
     <div class="wrap">
       <div class="sec-head reveal"><span class="label">Shop Materials</span><h2>A curated stock of high-performance materials</h2>
         <p>A selection of the high-performance materials we trust in our own production - ship-ready to your bench. Keep following for more novel materials and products as they arrive.</p></div>
-      <div class="grid-3 reveal">
+      <div class="grid-3 swipe-row reveal">
         <a class="prod-card" href="product-rizium.html">
           <div class="prod-thumb photo"><img src="images/rizium-gf.jpg" alt="Rizium GF filament spool" loading="lazy"></div>
           <div class="prod-body"><h3>Rizium GF</h3><p class="desc">Glass-fiber-reinforced COC filament - high rigidity, near-isotropic strength, no drying needed.</p>
@@ -223,7 +224,7 @@
   <section style="background:var(--panel)">
     <div class="wrap">
       <div class="sec-head reveal"><span class="label">What We Make</span><h2>Capabilities snapshot</h2></div>
-      <div class="grid-3 reveal">
+      <div class="grid-3 cap-snap reveal">
         <div class="card"><div class="bar"></div><div class="ix">CAP-01</div><h3>End-use parts</h3><p>Functional, durable production components - not just prototypes.</p></div>
         <div class="card"><div class="bar"></div><div class="ix">CAP-02</div><h3>Tooling & fixtures</h3><p>Jigs, fixtures and tooling built to tight, repeatable tolerances.</p></div>
         <div class="card"><div class="bar"></div><div class="ix">CAP-03</div><h3>Tight-tolerance printing</h3><p>Precision parts where fit, form and function are non-negotiable.</p></div>
@@ -237,11 +238,11 @@
 
   <section class="ctaband">
     <div class="wrap"><h2>Have a part? Let's make it.</h2><p>Send your file and specs - we'll come back with the best way to produce it.</p>
-      <a class="btn btn-primary btn-lg" href="quote.html">Request a Print <span class="arr">&rarr;</span></a></div>
+      <a class="btn btn-primary btn-lg" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a></div>
   </section>
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>
