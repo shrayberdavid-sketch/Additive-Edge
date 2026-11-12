@@ -65,6 +65,14 @@
   window.AE_PRODUCTS = PRODUCTS;
   const money = n => "$"+Number(n).toFixed(2);
 
+  /* ---- GA4 EVENTS ----
+     Sends a GA4 event if the tag loaded. Returns false when gtag is missing
+     (blocked by an ad blocker, for example) so the cart and forms keep working. */
+  function track(name, params){
+    if (typeof gtag !== "function") return false;
+    try { gtag("event", name, params); return true; } catch(e){ return false; }
+  }
+
   /* ---- SHOPIFY STOREFRONT CART API ---- */
   const SHOPIFY = {
     domain: "eiqdfd-f3.myshopify.com",
@@ -171,6 +179,12 @@
                     : await apiCartCreate(variantId, qty);
       localStorage.setItem(STORAGE_KEY, _cart.id);
       this.render();
+      const price = P.prices[label];
+      track("add_to_cart", {
+        currency: "USD",
+        value: price * qty,
+        items: [{ item_id: productId, item_name: P.name, item_variant: label, price: price, quantity: qty }]
+      });
     },
     async setLineQty(lineId, qty){
       if (!_cart) return;
@@ -237,7 +251,15 @@
       document.body.style.overflow = "";
       setTimeout(()=>{ if (!drawer.classList.contains("open")) overlay.hidden = true; }, 280);
     },
-    checkout(){ if (_cart && _cart.checkoutUrl) window.location.href = _cart.checkoutUrl; }
+    checkout(){
+      if (!_cart || !_cart.checkoutUrl) return;
+      const url = _cart.checkoutUrl;
+      let gone = false;
+      const go = ()=>{ if (!gone){ gone = true; window.location.href = url; } };
+      /* Give the event a moment to send before leaving for Shopify; never wait more than 800 ms. */
+      if (track("begin_checkout", { currency: "USD", value: _cart.subtotal, event_callback: go })) setTimeout(go, 800);
+      else go();
+    }
   };
   window.AE = AE;
 
@@ -277,7 +299,7 @@
         const original = addBtn.innerHTML;
         addBtn.textContent = "Adding…";
         try { await AE.addToCart(id, label, qty); AE.openCart(); }
-        catch(err){ console.error(err); alert("Sorry — something went wrong adding to cart. Please try again."); }
+        catch(err){ console.error(err); alert("Sorry, something went wrong adding to cart. Please try again."); }
         finally { addBtn.disabled = false; addBtn.innerHTML = original; }
       });
     }
@@ -286,7 +308,7 @@
 
   /* ---- NAV + FOOTER + CART DRAWER MARKUP ---- */
   const NAV = [
-    ["index.html","home","Home"],
+    ["./","home","Home"],
     ["what-we-make.html","capabilities","Capabilities"],
     ["our-network.html","network","Our Network"],
     ["about.html","about","About"],
@@ -297,7 +319,7 @@
     const links = NAV.map(([href,key,txt])=>
       `<a href="${href}"${key===active?' class="active"':''}>${txt}</a>`).join("");
     return `<header><div class="wrap"><nav class="nav">
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
         <b>ADDITIVE <i>EDGE</i></b>
       </a>
       <div class="nav-right">
@@ -315,7 +337,7 @@
     return `<footer><div class="wrap">
       <div class="foot-grid">
         <div>
-          <a class="brand" href="index.html" style="display:inline-flex">
+          <a class="brand" href="./" style="display:inline-flex">
             <b>ADDITIVE <i>EDGE</i></b>
           </a>
           <p>On-demand 3D-printed parts, produced in-house and across a vetted manufacturing network. Printer- and material-agnostic. Engineering-grade.</p>
@@ -323,13 +345,17 @@
         <div class="foot-col"><h4>Explore</h4>
           <a href="what-we-make.html">Capabilities</a>
           <a href="our-network.html">Our Network</a>
+          <a href="about.html">About</a>
           <a href="resources.html">Resources</a>
+          <a href="partnerships">Partner Program</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
           <a href="shop.html">All Materials</a>
           <a href="product-rizium.html">Rizium GF</a>
           <a href="product-rizium-cf.html">Rizium CF</a>
+          <a href="product-rizium-support.html">Rizium Support</a>
           <a href="product-ataru.html">Ataru Resin</a>
+          <a href="product-ataru-cleaner.html">Ataru Resin Cleaner</a>
         </div>
         <div class="foot-col"><h4>Contact</h4>
           <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>
@@ -384,6 +410,14 @@
     const productId = document.body.getAttribute("data-product");
     if(productId) initProductPage(productId);
 
+    /* GA4: datasheet and SDS downloads (any PDF link on the site) */
+    document.addEventListener("click", (e)=>{
+      const a = e.target.closest && e.target.closest('a[href$=".pdf"]');
+      if (!a) return;
+      const href = a.getAttribute("href");
+      track("file_download", { file_name: href.split("/").pop(), file_extension: "pdf", link_url: a.href });
+    });
+
     AE.badge();
     initReveal();
     initRibbon();
@@ -422,7 +456,7 @@
           else if(act === "remove") await AE.removeLine(id);
         } catch(err){
           console.error(err);
-          alert("Sorry — couldn't update the cart. Please try again.");
+          alert("Sorry, we couldn't update the cart. Please try again.");
         } finally {
           body.classList.remove("busy");
         }

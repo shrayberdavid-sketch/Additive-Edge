@@ -11,29 +11,29 @@
   gtag('js', new Date());
   gtag('config', 'G-JXJV7S784T');
 </script>
-<title>Machine Shop Partnership | Additive Edge</title>
-<meta name="description" content="Partner with Additive Edge to offer your customers 3D-printed parts. Free for machine shops: 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
-<link rel="canonical" href="/partnerships">
+<title>3D Printing Partner Program for Machine Shops | Additive Edge</title>
+<meta name="description" content="Machine shops: offer your customers 3D printed parts at no cost to join. 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
+<link rel="canonical" href="https://additive-edge.com/partnerships">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=11">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Machine Shop Partnership | Additive Edge">
-<meta property="og:description" content="Partner with Additive Edge to offer your customers 3D-printed parts. Free for machine shops: 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
-<meta property="og:url" content="https://shrayberdavid-sketch.github.io/Additive-Edge/partnerships">
-<meta property="og:image" content="https://shrayberdavid-sketch.github.io/Additive-Edge/og-image.svg">
+<meta property="og:title" content="3D Printing Partner Program for Machine Shops | Additive Edge">
+<meta property="og:description" content="Machine shops: offer your customers 3D printed parts at no cost to join. 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
+<meta property="og:url" content="https://additive-edge.com/partnerships">
+<meta property="og:image" content="https://additive-edge.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Machine Shop Partnership | Additive Edge">
-<meta name="twitter:description" content="Partner with Additive Edge to offer your customers 3D-printed parts. Free for machine shops: 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
-<meta name="twitter:image" content="https://shrayberdavid-sketch.github.io/Additive-Edge/og-image.svg">
+<meta name="twitter:title" content="3D Printing Partner Program for Machine Shops | Additive Edge">
+<meta name="twitter:description" content="Machine shops: offer your customers 3D printed parts at no cost to join. 100+ printers, 45+ materials, co-marketing and cost approval before any work.">
+<meta name="twitter:image" content="https://additive-edge.com/og-image.png">
 <script type="application/ld+json">{
   "@context":"https://schema.org",
   "@type":"LocalBusiness",
   "name":"Additive Edge",
-  "url":"https://shrayberdavid-sketch.github.io/Additive-Edge/",
+  "url":"https://additive-edge.com/",
   "telephone":"+1-617-331-6266",
   "email":"david@additive-edge.com",
   "address":{
@@ -55,13 +55,14 @@
 </style>
 </head>
 <body data-page="partnerships">
+<noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make.html">Capabilities</a> | <a href="our-network.html">Our Network</a> | <a href="about.html">About</a> | <a href="shop.html">Shop</a> | <a href="quote.html">Request a Quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
 <div id="nav-root"></div>
 <main>
 
   <section class="page-hero">
     <div class="wrap">
-      <span class="label">Machine Shop Partnership</span>
-      <h1>You keep the customer.<br><span style="color:var(--accent)">We do the work.</span></h1>
+      <h1 class="label">3D Printing Partner Program for Machine Shops</h1>
+      <div class="display-title">You keep the customer.<br><span style="color:var(--accent)">We do the work.</span></div>
       <p class="sub">Some parts can't be machined. Others just won't fit in your schedule with lead times where they are. Partner with us and you can still say yes to those jobs. We print the parts, you deliver them under your name, and it doesn't cost your shop a thing.</p>
       <div class="cta-row" style="margin-top:30px">
         <a class="btn btn-primary btn-lg" href="#partner-form">Become a partner <span class="arr">&rarr;</span></a>
@@ -241,7 +242,7 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 <script>
 (function(){
   // AJAX submit to Web3Forms (same as quote.html): stays on page, shows inline success/error.
@@ -266,6 +267,7 @@
       if(r.ok && r.json.success){
         form.style.display = 'none';
         if(success) success.classList.add('active');
+        if(typeof gtag === 'function') gtag('event', 'generate_lead', { form_name: 'partnership' });
       } else if(note){
         note.classList.add('is-error');
         note.innerHTML = (r.json && r.json.message ? r.json.message : 'Something went wrong.') + fallback;

@@ -1,47 +1,50 @@
 # Additive Edge
 
-Marketing + storefront website for **Additive Edge** - an on-demand additive manufacturing production hub (in-house production + a vetted partner network) with a store selling the RIZIUM® line and Ataru materials.
+Marketing and storefront website for **Additive Edge**, an on-demand additive manufacturing production hub (in-house production plus a vetted partner network) with a store selling the RIZIUM® line and Ataru materials.
 
-Static site - plain HTML, CSS, and JavaScript. No build step, no dependencies.
+Live at **https://additive-edge.com** (custom domain set in `CNAME`).
+
+Static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 
 ## Structure
 
 | File | Page |
 |------|------|
-| `index.html` | Home |
+| `index.html` | Home (linked as `./`) |
 | `what-we-make.html` | Capabilities |
 | `our-network.html` | Our Network |
-| `materials.html` | Materials overview |
+| `about.html` | About |
+| `resources.html` | Resources (placeholder, not in the sitemap yet) |
+| `quote.html` | Request a quote (Web3Forms) |
+| `partnerships.html` | Machine shop partner program (served at `/partnerships`) |
+| `machine-shop-partnership.html` | Redirect to `/partnerships` (old URL, `noindex`) |
 | `shop.html` | Store |
 | `product-rizium.html` | Rizium GF product |
 | `product-rizium-cf.html` | Rizium CF product |
-| `product-ataru.html` | Ataru product |
-| `cart.html` | Cart |
-| `industries.html` | Industries |
-| `about.html` | About |
-| `resources.html` | Resources hub (links to landing pages) |
-| `partnerships.html` | Machine shop partnership landing page (served at `/partnerships`) |
-| `machine-shop-partnership.html` | Redirect to `/partnerships` (old URL) |
-| `quote.html` | Get a Quote |
+| `product-rizium-support.html` | Rizium Support product |
+| `product-ataru.html` | Ataru resin product |
+| `product-ataru-cleaner.html` | Ataru Resin Cleaner product |
+| `cart.html` | Redirect that opens the cart drawer on the shop page (`noindex`) |
 | `styles.css` | Shared styles |
-| `app.js` | Shared nav/footer + cart logic + product catalog |
-| `Rizium_GF.pdf`, `Rizium_CF.pdf` | Downloadable datasheets |
+| `app.js` | Shared nav, footer, Shopify cart, product catalog and GA4 events |
+| `*.pdf` | Datasheets and safety data sheets |
+| `og-image.png` | Social share image (1200 x 630). `og-image.svg` is the source. |
+| `robots.txt`, `sitemap.xml` | Search engine files |
 
 ## Run locally
-Open `index.html` in a browser, or serve the folder:
+Serve the folder:
 ```
 python3 -m http.server 8000
 ```
 then visit http://localhost:8000
 
-## Deploy with GitHub Pages
-1. Push these files to the repo (root level).
-2. Repo **Settings → Pages**.
-3. Source: **Deploy from a branch**, branch **main**, folder **/(root)**.
-4. Save. The site publishes at `https://shrayberdavid-sketch.github.io/Additive-Edge/`.
+## Deploy
+GitHub Pages deploys from the `main` branch, root folder. Anything merged to `main` goes live right away, so make changes on a branch and open a pull request.
+
+When `styles.css` or `app.js` changes, raise the `?v=` number on every page that loads it so browsers fetch the new file.
 
 ## Notes
-- The cart is a front-end preview (uses browser storage). It calculates items and totals but does **not** process payments. To take real orders, connect a checkout (Wix Stores, Snipcart, or Stripe).
-- Rizium pricing is live: 500 g = $99, 820 g = $160 (set in `app.js`).
-- Ataru pricing is now set to $693 in `app.js`, `product-ataru.html`, `shop.html`, `index.html`, and `materials.html`.
-- Product catalog and prices live in `app.js` (`PRODUCTS`).
+- The cart is a slide-out drawer backed by the Shopify Storefront API. Checkout and payment happen on Shopify.
+- Product catalog, display prices and Shopify variant IDs live in `PRODUCTS` in `app.js`. Shopify's prices are the ones charged at checkout. Product pages also carry `Product` schema prices, which must match `PRODUCTS`.
+- Google Analytics 4 (`G-JXJV7S784T`) loads on every page. Events: `generate_lead` (quote and partnership forms), `add_to_cart`, `begin_checkout` and `file_download` (PDF links).
+- Canonical domain is `https://additive-edge.com` (no `www`). Canonicals, Open Graph URLs and the sitemap all use it.
