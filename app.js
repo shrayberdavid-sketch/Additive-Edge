@@ -335,7 +335,7 @@
     ["what-we-make","capabilities","Capabilities"],
     ["our-network","network","Our Network"],
     ["about","about","About"],
-    ["resources","resources","Resources"],
+    // ["resources","resources","Resources"], hidden until the page has content
     ["shop","shop","Shop"]
   ];
   function renderNav(active){
@@ -382,7 +382,6 @@
           <a href="what-we-make">Capabilities</a>
           <a href="our-network">Our Network</a>
           <a href="about">About</a>
-          <a href="resources">Resources</a>
           <a href="partnerships">Partner Program</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
@@ -419,7 +418,7 @@
           <a href="our-network">Our Network</a>
           <a href="partnerships">Partner program</a>
           <a href="about">About</a>
-          <a href="resources">Resources</a>
+          <a href="quote">Get a quote</a>
         </nav>
         <div class="foot-m-legal">&copy; 2026 Additive Edge</div>
       </div>
