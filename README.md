@@ -26,7 +26,8 @@ Static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 | `product-ataru-cleaner.html` | Ataru Resin Cleaner product |
 | `cart.html` | Redirect that opens the cart drawer on the shop page (`noindex`) |
 | `styles.css` | Shared styles |
-| `app.js` | Shared nav, footer, Shopify cart, product catalog and GA4 events |
+| `app.js` | Menu, cart drawer and sticky-bar behavior, Shopify cart, product catalog and GA4 events |
+| `tools/build_chrome.py` | Source of the shared header (Google rating strip + menu) and footer; writes them into every page |
 | `*.pdf` | Datasheets and safety data sheets |
 | `og-image.png` | Social share image (1200 x 630). `og-image.svg` is the source. |
 | `robots.txt`, `sitemap.xml` | Search engine files |
@@ -36,7 +37,14 @@ Serve the folder:
 ```
 python3 -m http.server 8000
 ```
-then visit http://localhost:8000
+then visit http://localhost:8000/index.html (this simple server needs the `.html` ending; GitHub Pages serves the clean addresses like `/about`).
+
+## Header and footer
+The header (Google rating strip and menu) and the footer are plain HTML inside every page, so search engines see the phone number, address and links without JavaScript. Don't edit them page by page: change `tools/build_chrome.py` and run
+```
+python3 tools/build_chrome.py
+```
+It rewrites the block between `<div id="nav-root">` and `<!-- /nav-root -->` (and the same for `footer-root`) on every page and marks the current page in the menu.
 
 ## Deploy
 GitHub Pages deploys from the `main` branch, root folder. Anything merged to `main` goes live right away, so make changes on a branch and open a pull request.
