@@ -451,6 +451,7 @@
     wireMenu();
     wireCallTracking();
     wireFieldFocus();
+    wireStickyAfterHero();
     initMobileDetails();
 
     /* nav cart icon opens the drawer instead of navigating to a cart page */
@@ -513,6 +514,20 @@
   }
 
   /* Hide the phone sticky bar while a form field has focus, so it never covers the field. */
+  /* Homepage only: the phone call/quote bar stays hidden while the hero's own buttons are on
+     screen, and slides up once they scroll off the top. Other pages show the bar as before. */
+  function wireStickyAfterHero(){
+    const cta = document.body.getAttribute("data-page") === "home" && document.querySelector(".hero .cta-row");
+    if(!cta) return;
+    document.body.classList.add("sticky-wait");
+    const update = ()=>{
+      document.body.classList.toggle("sticky-show", cta.getBoundingClientRect().bottom < 0);
+    };
+    window.addEventListener("scroll", update, {passive:true});
+    window.addEventListener("resize", update);
+    update();
+  }
+
   function wireFieldFocus(){
     const isField = el => el && el.matches && el.matches("input, textarea, select");
     document.addEventListener("focusin",  (e)=>{ if(isField(e.target)) document.body.classList.add("field-focus"); });

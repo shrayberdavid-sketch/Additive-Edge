@@ -417,6 +417,9 @@ main:focus{outline:none}
   .m-sticky .btn{justify-content:center;min-height:48px;font-size:13px}
   body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
   body.cart-open .m-sticky,body.field-focus .m-sticky{display:none}
+  /* homepage: hidden while the hero buttons are on screen, slides up after (see app.js) */
+  .m-sticky{transition:transform .28s var(--ease),visibility 0s}
+  body.sticky-wait:not(.sticky-show) .m-sticky{transform:translateY(110%);visibility:hidden;transition:transform .28s var(--ease),visibility 0s linear .28s}
   body.cart-open,body.field-focus{padding-bottom:0}
 }
 
@@ -574,4 +577,5 @@ details[open] > summary.m-sum::after{content:"\2212"}
   html,.ribbon-track{scroll-behavior:auto}
   .js .reveal{opacity:1;transform:none;transition:none}
   .btn,.btn .arr,.card,.prod-card,.card .bar,.skip-link{transition:none}
+  .m-sticky,body.sticky-wait:not(.sticky-show) .m-sticky{transition:none}
 }
