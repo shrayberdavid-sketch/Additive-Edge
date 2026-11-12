@@ -42,7 +42,7 @@
     },
     "rizium-support": {
       id:"rizium-support", name:"Rizium Support", type:"filament",
-      tagline:"Copolyester support material - compatible with all RIZIUM® filaments",
+      tagline:"Copolyester support material, compatible with all RIZIUM® filaments",
       prices:{ "500 g":75 }, priceFrom:75,
       url:"product-rizium-support.html",
       variants:{
@@ -394,7 +394,7 @@
         </div>
       </div>
       <div class="foot-bottom">
-        <span>&copy; 2026 ADDITIVE EDGE - ALL RIGHTS RESERVED</span>
+        <span>&copy; 2026 ADDITIVE EDGE. ALL RIGHTS RESERVED</span>
         <span>ADDITIVE MANUFACTURING // IN-HOUSE + NETWORK</span>
       </div>
       <div class="foot-m">
