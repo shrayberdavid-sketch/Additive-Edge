@@ -451,6 +451,7 @@
 
     AE.badge();
     initReveal();
+    initCountUp();
     initRibbon();
 
     /* load any existing Shopify cart, then refresh badge + drawer */
@@ -575,6 +576,30 @@
       window.addEventListener("resize", updateArrows);
       updateArrows();
     });
+  }
+
+  /* Hero stats count up from 0 once, when they scroll into view. The HTML holds the final
+     numbers, so without JavaScript or with reduced motion they simply show as written. */
+  function initCountUp(){
+    const els = [...document.querySelectorAll(".count[data-to]")];
+    if(!els.length || reduceMotion || !("IntersectionObserver" in window)) return;
+    /* each number sits on its own line above its label, so it can grow to the right without moving anything */
+    els.forEach(el=>{ el.textContent = "0"; });
+    const run = (el)=>{
+      const to = parseInt(el.getAttribute("data-to"), 10) || 0;
+      const dur = 1400, t0 = performance.now();
+      const tick = (now)=>{
+        const p = Math.min(1, (now - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);                         /* ease-out cubic */
+        el.textContent = String(Math.round(to * eased));
+        if(p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
+    },{threshold:.4});
+    els.forEach(el=>io.observe(el));
   }
 
   function initReveal(){
