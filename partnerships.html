@@ -46,7 +46,7 @@
   "areaServed":"Worldwide"
 }</script>
 <style>
-  /* Embedded partnership form: mirrors the quote.html form states */
+  /* Embedded partnership form: mirrors the quote form states */
   .quote-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .quote-form.is-sending button[type=submit]{opacity:.6;pointer-events:none}
   .formnote.is-error{color:#ff6b6b}
@@ -56,7 +56,7 @@
 </head>
 <body data-page="partnerships">
 <a class="skip-link" href="#main">Skip to content</a>
-<noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make.html">Capabilities</a> | <a href="our-network.html">Our Network</a> | <a href="about.html">About</a> | <a href="shop.html">Shop</a> | <a href="quote.html">Get a quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
+<noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make">Capabilities</a> | <a href="our-network">Our Network</a> | <a href="about">About</a> | <a href="shop">Shop</a> | <a href="quote">Get a quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
 <div id="nav-root"></div>
 <main id="main" tabindex="-1">
 
@@ -113,7 +113,7 @@
         <p>Tell us a little about your shop and the work you're turning away. We'll reach out to get things set up.</p></div>
       <div class="quote-grid">
         <div class="reveal">
-          <!-- Same Web3Forms backend/key as quote.html; request type is fixed to the partnership. -->
+          <!-- Same Web3Forms backend/key as quote; request type is fixed to the partnership. -->
           <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="066527ff-3a8f-4ee1-808d-999bc1138a8d">
             <input type="hidden" name="subject" value="New request: Machine shop partnership (Additive Edge)">
@@ -188,7 +188,7 @@
         <span class="pill">Rizium GF</span><span class="pill">Rizium CF</span><span class="pill">CF / GF PEEK</span><span class="pill">CF / GF Ultem</span><span class="pill">CF / GF ABS</span><span class="pill">CF / GF PLA</span>
         <h3>Ceramics &amp; specialty</h3>
         <span class="pill">Zirconia</span><span class="pill">Alumina</span><span class="pill">Silicone</span><span class="pill">Foam</span><span class="pill">Printed PCBs</span>
-        <p style="color:var(--dim);font-size:14.5px;margin-top:22px">See the full list on our <a href="what-we-make.html" style="color:var(--accent-2)">capabilities page</a>. Don't see what you need? Ask and we'll find it.</p>
+        <p style="color:var(--dim);font-size:14.5px;margin-top:22px">See the full list on our <a href="what-we-make" style="color:var(--accent-2)">capabilities page</a>. Don't see what you need? Ask and we'll find it.</p>
         </details>
       </div>
     </div>
@@ -249,10 +249,10 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 <script>
 (function(){
-  // AJAX submit to Web3Forms (same as quote.html): stays on page, shows inline success/error.
+  // AJAX submit to Web3Forms (same as quote): stays on page, shows inline success/error.
   var form = document.querySelector('.quote-form');
   if(!form) return;
   var note = document.getElementById('formnote');

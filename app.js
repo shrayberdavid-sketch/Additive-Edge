@@ -5,12 +5,19 @@
   /* Content is visible by default; reveal animations only hide it once this script runs. */
   document.documentElement.classList.add("js");
 
+  /* Old links ending in .html still load the page; show the clean address (/about, not /about.html).
+     replaceState only rewrites the address bar: no reload, no new history entry. */
+  if (/\.html$/.test(location.pathname) && window.history && history.replaceState) {
+    const clean = location.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+    history.replaceState(history.state, "", clean + location.search + location.hash);
+  }
+
   const PHONE_DISPLAY = "617-331-6266";
   const PHONE_HREF = "tel:+16173316266";
   const MAIL_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
   const PHONE_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
   /* Same wording in the cart drawer, on the shop page and under each Add to cart button. */
-  const SHIP_NOTICE = 'This shop ships to <strong>North and South American customers only</strong>. If you\'re outside this region, please <a href="quote.html">Get a quote</a> and we\'ll provide a separate quote.';
+  const SHIP_NOTICE = 'This shop ships to <strong>North and South American customers only</strong>. If you\'re outside this region, please <a href="quote">Get a quote</a> and we\'ll provide a separate quote.';
   const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- PRODUCT CATALOG ----
@@ -22,7 +29,7 @@
       id:"rizium-gf", name:"Rizium GF", type:"filament",
       tagline:"Glass-fiber-reinforced COC engineering filament",
       prices:{ "500 g":99, "820 g":160 }, priceFrom:99,
-      url:"product-rizium.html",
+      url:"product-rizium",
       variants:{
         "500 g":"gid://shopify/ProductVariant/51025909481692",
         "820 g":"gid://shopify/ProductVariant/51025909514460"
@@ -33,7 +40,7 @@
       id:"rizium-cf", name:"Rizium CF", type:"filament",
       tagline:"Carbon-fiber-reinforced COC engineering filament",
       prices:{ "500 g":99, "820 g":160 }, priceFrom:99,
-      url:"product-rizium-cf.html",
+      url:"product-rizium-cf",
       variants:{
         "500 g":"gid://shopify/ProductVariant/51025912922332",
         "820 g":"gid://shopify/ProductVariant/51025912955100"
@@ -44,7 +51,7 @@
       id:"rizium-support", name:"Rizium Support", type:"filament",
       tagline:"Copolyester support material, compatible with all RIZIUM® filaments",
       prices:{ "500 g":75 }, priceFrom:75,
-      url:"product-rizium-support.html",
+      url:"product-rizium-support",
       variants:{
         "500 g":"gid://shopify/ProductVariant/51025913053404"
       },
@@ -54,7 +61,7 @@
       id:"ataru", name:"Ataru", type:"resin",
       tagline:"High-performance DLP resin · 300°C+ · low dielectric loss",
       prices:{ "1 L":693.00, "5 L":3316.00 }, priceFrom:693,
-      url:"product-ataru.html",
+      url:"product-ataru",
       variants:{
         "1 L":"gid://shopify/ProductVariant/51025916428508",
         "5 L":"gid://shopify/ProductVariant/51025916461276"
@@ -65,7 +72,7 @@
       id:"ataru-cleaner", name:"Ataru Resin Cleaner", type:"cleaner",
       tagline:"Post-print resin wash formulated for Ataru DLP resin",
       prices:{ "1 L":24.00, "5 L":100.00 }, priceFrom:24,
-      url:"product-ataru-cleaner.html",
+      url:"product-ataru-cleaner",
       variants:{
         "1 L":"gid://shopify/ProductVariant/51025916559580",
         "5 L":"gid://shopify/ProductVariant/51025916592348"
@@ -325,11 +332,11 @@
   /* ---- NAV + FOOTER + CART DRAWER MARKUP ---- */
   const NAV = [
     ["./","home","Home"],
-    ["what-we-make.html","capabilities","Capabilities"],
-    ["our-network.html","network","Our Network"],
-    ["about.html","about","About"],
-    ["resources.html","resources","Resources"],
-    ["shop.html","shop","Shop"]
+    ["what-we-make","capabilities","Capabilities"],
+    ["our-network","network","Our Network"],
+    ["about","about","About"],
+    ["resources","resources","Resources"],
+    ["shop","shop","Shop"]
   ];
   function renderNav(active){
     const links = NAV.map(([href,key,txt])=>
@@ -342,16 +349,16 @@
         <div class="nav-links" id="navlinks">${links}
           <div class="nav-menu-cta">
             <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="menu">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-            <a class="btn btn-primary" href="quote.html">Get a quote <span class="arr">&rarr;</span></a>
+            <a class="btn btn-primary" href="quote">Get a quote <span class="arr">&rarr;</span></a>
           </div>
         </div>
         <a class="nav-call" href="${PHONE_HREF}" data-call="header">${PHONE_SVG}<span>${PHONE_DISPLAY}</span></a>
         <a class="nav-call-icon" href="${PHONE_HREF}" data-call="header" aria-label="Call Additive Edge">${PHONE_SVG}</a>
-        <a class="cart-btn" href="cart.html" aria-label="Cart">
+        <a class="cart-btn" href="cart" aria-label="Cart">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-badge" id="cartBadge">0</span>
         </a>
-        <a class="btn btn-primary" href="quote.html">Get a quote <span class="arr">&rarr;</span></a>
+        <a class="btn btn-primary" href="quote">Get a quote <span class="arr">&rarr;</span></a>
         <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
       </div>
     </nav></div></header>`;
@@ -359,7 +366,7 @@
   function renderStickyBar(){
     return `<div class="m-sticky" id="mSticky">
       <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="sticky_bar">${PHONE_SVG} Call</a>
-      <a class="btn btn-primary" href="quote.html">Get a quote</a>
+      <a class="btn btn-primary" href="quote">Get a quote</a>
     </div>`;
   }
   function renderFooter(){
@@ -372,25 +379,25 @@
           <p>On-demand 3D printed parts, produced in-house and across a vetted manufacturing network.</p>
         </div>
         <div class="foot-col"><h4>Explore</h4>
-          <a href="what-we-make.html">Capabilities</a>
-          <a href="our-network.html">Our Network</a>
-          <a href="about.html">About</a>
-          <a href="resources.html">Resources</a>
+          <a href="what-we-make">Capabilities</a>
+          <a href="our-network">Our Network</a>
+          <a href="about">About</a>
+          <a href="resources">Resources</a>
           <a href="partnerships">Partner Program</a>
         </div>
         <div class="foot-col"><h4>Shop</h4>
-          <a href="shop.html">All Materials</a>
-          <a href="product-rizium.html">Rizium GF</a>
-          <a href="product-rizium-cf.html">Rizium CF</a>
-          <a href="product-rizium-support.html">Rizium Support</a>
-          <a href="product-ataru.html">Ataru Resin</a>
-          <a href="product-ataru-cleaner.html">Ataru Resin Cleaner</a>
+          <a href="shop">All Materials</a>
+          <a href="product-rizium">Rizium GF</a>
+          <a href="product-rizium-cf">Rizium CF</a>
+          <a href="product-rizium-support">Rizium Support</a>
+          <a href="product-ataru">Ataru Resin</a>
+          <a href="product-ataru-cleaner">Ataru Resin Cleaner</a>
         </div>
         <div class="foot-col"><h4>Contact</h4>
           <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>
           <a href="${PHONE_HREF}" data-call="footer">${PHONE_DISPLAY}</a>
           <span class="foot-addr">Sharon, MA 02067</span>
-          <a href="quote.html">Get a quote</a>
+          <a href="quote">Get a quote</a>
         </div>
       </div>
       <div class="foot-bottom">
@@ -407,12 +414,12 @@
           <a class="foot-m-btn" href="${PHONE_HREF}" data-call="footer">${PHONE_SVG} ${PHONE_DISPLAY}</a>
         </div>
         <nav class="foot-m-links" aria-label="Footer">
-          <a href="what-we-make.html">Capabilities</a>
-          <a href="shop.html">Shop materials</a>
-          <a href="our-network.html">Our Network</a>
+          <a href="what-we-make">Capabilities</a>
+          <a href="shop">Shop materials</a>
+          <a href="our-network">Our Network</a>
           <a href="partnerships">Partner program</a>
-          <a href="about.html">About</a>
-          <a href="resources.html">Resources</a>
+          <a href="about">About</a>
+          <a href="resources">Resources</a>
         </nav>
         <div class="foot-m-legal">&copy; 2026 Additive Edge</div>
       </div>
@@ -430,7 +437,7 @@
         </div>
         <div class="ae-cart-subtotal"><span class="k">Subtotal</span><span class="v" id="aeCartSubtotal">$0.00</span></div>
         <button id="aeCartCheckout" class="btn btn-primary" hidden>Checkout <span class="arr">&rarr;</span></button>
-        <a id="aeCartBrowse" class="btn btn-ghost" href="shop.html">Browse materials <span class="arr">&rarr;</span></a>
+        <a id="aeCartBrowse" class="btn btn-ghost" href="shop">Browse materials <span class="arr">&rarr;</span></a>
         <p class="ae-cart-note">Shipping &amp; taxes calculated at checkout.</p>
       </div>
     </aside>`;
@@ -479,7 +486,7 @@
     /* load any existing Shopify cart, then refresh badge + drawer */
     AE.ensure().then(()=>AE.render()).catch(err=>console.error(err));
 
-    /* allow ?cart=1 (e.g. legacy cart.html redirect) to open the drawer */
+    /* allow ?cart=1 (e.g. legacy cart redirect) to open the drawer */
     if(/[?&]cart=1\b/.test(window.location.search)){
       AE.ensure().then(()=>{ AE.render(); AE.openCart(); }).catch(err=>console.error(err));
     }
