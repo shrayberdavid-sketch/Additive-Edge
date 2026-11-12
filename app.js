@@ -2,6 +2,16 @@
 (function(){
   "use strict";
 
+  /* Content is visible by default; reveal animations only hide it once this script runs. */
+  document.documentElement.classList.add("js");
+
+  const PHONE_DISPLAY = "617-331-6266";
+  const PHONE_HREF = "tel:+16173316266";
+  const PHONE_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  /* Same wording in the cart drawer, on the shop page and under each Add to cart button. */
+  const SHIP_NOTICE = 'This shop ships to <strong>North and South American customers only</strong>. If you\'re outside this region, please <a href="quote.html">Get a Quote</a> and we\'ll provide a separate quote.';
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---- PRODUCT CATALOG ----
      `variants` map option label -> Shopify Storefront variant GID.
      `prices` are used for on-page display; the cart/checkout uses Shopify's
@@ -229,7 +239,10 @@
           </div>`).join("") : '<p class="ae-cart-empty">Your cart is empty.</p>';
       }
       if (sub)   sub.textContent = money(_cart ? _cart.subtotal : 0);
-      if (coBtn) coBtn.disabled = !items.length;
+      /* empty cart: show a link to the shop instead of a disabled Checkout button */
+      const browse = document.getElementById("aeCartBrowse");
+      if (coBtn)  coBtn.hidden = !items.length;
+      if (browse) browse.hidden = !!items.length;
       this.badge();
     },
     openCart(){
@@ -240,6 +253,7 @@
       requestAnimationFrame(()=>{ overlay.classList.add("show"); drawer.classList.add("open"); });
       drawer.setAttribute("aria-hidden","false");
       document.body.style.overflow = "hidden";
+      document.body.classList.add("cart-open");
     },
     closeCart(){
       const drawer = document.getElementById("aeCartDrawer");
@@ -249,6 +263,7 @@
       overlay.classList.remove("show");
       drawer.setAttribute("aria-hidden","true");
       document.body.style.overflow = "";
+      document.body.classList.remove("cart-open");
       setTimeout(()=>{ if (!drawer.classList.contains("open")) overlay.hidden = true; }, 280);
     },
     checkout(){
@@ -323,15 +338,28 @@
         <b>ADDITIVE <i>EDGE</i></b>
       </a>
       <div class="nav-right">
-        <div class="nav-links" id="navlinks">${links}</div>
+        <div class="nav-links" id="navlinks">${links}
+          <div class="nav-menu-cta">
+            <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="menu">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+            <a class="btn btn-primary" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+        <a class="nav-call" href="${PHONE_HREF}" data-call="header">${PHONE_SVG}<span>${PHONE_DISPLAY}</span></a>
+        <a class="nav-call-icon" href="${PHONE_HREF}" data-call="header" aria-label="Call Additive Edge">${PHONE_SVG}</a>
         <a class="cart-btn" href="cart.html" aria-label="Cart">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-badge" id="cartBadge">0</span>
         </a>
-        <a class="btn btn-primary" href="quote.html">Request a Print <span class="arr">&rarr;</span></a>
-        <button class="hamb" id="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a class="btn btn-primary" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+        <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
       </div>
     </nav></div></header>`;
+  }
+  function renderStickyBar(){
+    return `<div class="m-sticky" id="mSticky">
+      <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="sticky_bar">${PHONE_SVG} Call</a>
+      <a class="btn btn-primary" href="quote.html">Get a Quote</a>
+    </div>`;
   }
   function renderFooter(){
     return `<footer><div class="wrap">
@@ -359,9 +387,9 @@
         </div>
         <div class="foot-col"><h4>Contact</h4>
           <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>
-          <a href="tel:6173316266">617-331-6266</a>
-          <a>Sharon, MA 02067</a>
-          <a href="quote.html">Request a Print</a>
+          <a href="${PHONE_HREF}" data-call="footer">${PHONE_DISPLAY}</a>
+          <span class="foot-addr">Sharon, MA 02067</span>
+          <a href="quote.html">Get a Quote</a>
         </div>
       </div>
       <div class="foot-bottom">
@@ -378,10 +406,11 @@
       <div class="ae-cart-foot">
         <div class="ae-cart-ship-notice">
           <span aria-hidden="true">&#127758;</span>
-          <p>This shop ships to <strong>North and South American customers only</strong>. If you're outside this region, please reach out in the <a href="quote.html">request a print</a> area and we'll provide a separate quote.</p>
+          <p>${SHIP_NOTICE}</p>
         </div>
         <div class="ae-cart-subtotal"><span class="k">Subtotal</span><span class="v" id="aeCartSubtotal">$0.00</span></div>
-        <button id="aeCartCheckout" class="btn btn-primary" disabled>Checkout <span class="arr">&rarr;</span></button>
+        <button id="aeCartCheckout" class="btn btn-primary" hidden>Checkout <span class="arr">&rarr;</span></button>
+        <a id="aeCartBrowse" class="btn btn-ghost" href="shop.html">Browse materials <span class="arr">&rarr;</span></a>
         <p class="ae-cart-note">Shipping &amp; taxes calculated at checkout.</p>
       </div>
     </aside>`;
@@ -395,12 +424,14 @@
     if(navRoot) navRoot.innerHTML = renderNav(active);
     if(footRoot) footRoot.innerHTML = renderFooter();
 
-    /* inject + wire the shared cart drawer */
+    /* inject + wire the shared cart drawer and the phone call/quote bar */
     document.body.insertAdjacentHTML("beforeend", renderCartDrawer());
+    document.body.insertAdjacentHTML("beforeend", renderStickyBar());
     wireCartDrawer();
-
-    const hamb = document.getElementById("hamb");
-    if(hamb) hamb.addEventListener("click",()=>document.getElementById("navlinks").classList.toggle("open"));
+    wireMenu();
+    wireCallTracking();
+    wireFieldFocus();
+    initMobileDetails();
 
     /* nav cart icon opens the drawer instead of navigating to a cart page */
     const cartBtn = document.querySelector(".cart-btn");
@@ -429,6 +460,58 @@
     if(/[?&]cart=1\b/.test(window.location.search)){
       AE.ensure().then(()=>{ AE.render(); AE.openCart(); }).catch(err=>console.error(err));
     }
+  }
+
+  /* Mobile menu: aria-expanded, close on link tap, outside tap or Escape. */
+  function wireMenu(){
+    const hamb = document.getElementById("hamb");
+    const menu = document.getElementById("navlinks");
+    if(!hamb || !menu) return;
+    const setOpen = (open)=>{
+      menu.classList.toggle("open", open);
+      hamb.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    hamb.addEventListener("click", (e)=>{ e.stopPropagation(); setOpen(!menu.classList.contains("open")); });
+    menu.addEventListener("click", (e)=>{ if(e.target.closest("a")) setOpen(false); });
+    document.addEventListener("click", (e)=>{
+      if(menu.classList.contains("open") && !menu.contains(e.target) && !hamb.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape" && menu.classList.contains("open")){ setOpen(false); hamb.focus(); }
+    });
+  }
+
+  /* GA4: phone taps. Each tel: link says where it sits with data-call. */
+  function wireCallTracking(){
+    document.addEventListener("click", (e)=>{
+      const a = e.target.closest && e.target.closest('a[href^="tel:"]');
+      if(!a) return;
+      track("click_to_call", { location: a.getAttribute("data-call") || "contact_card" });
+    });
+  }
+
+  /* Hide the phone sticky bar while a form field has focus, so it never covers the field. */
+  function wireFieldFocus(){
+    const isField = el => el && el.matches && el.matches("input, textarea, select");
+    document.addEventListener("focusin",  (e)=>{ if(isField(e.target)) document.body.classList.add("field-focus"); });
+    document.addEventListener("focusout", (e)=>{ if(isField(e.target)) document.body.classList.remove("field-focus"); });
+  }
+
+  /* <details data-mobile-closed> are open above 600 px and closed on phones.
+     Above 600 px their summaries are plain text, so they also leave the tab order. */
+  function initMobileDetails(){
+    const list = document.querySelectorAll("details[data-mobile-closed]");
+    if(!list.length || !window.matchMedia) return;
+    const mq = window.matchMedia("(max-width:600px)");
+    const sync = ()=>{
+      list.forEach(d=>{
+        d.open = !mq.matches;
+        const s = d.querySelector(":scope > summary");
+        if(s){ if(mq.matches) s.removeAttribute("tabindex"); else s.setAttribute("tabindex","-1"); }
+      });
+    };
+    sync();
+    if(mq.addEventListener) mq.addEventListener("change", sync); else if(mq.addListener) mq.addListener(sync);
   }
 
   function wireCartDrawer(){
@@ -479,8 +562,15 @@
         if(prev) prev.disabled = track.scrollLeft <= 0;
         if(next) next.disabled = track.scrollLeft >= max;
       }
-      if(prev) prev.addEventListener("click", ()=>track.scrollBy({left:-step(), behavior:"smooth"}));
-      if(next) next.addEventListener("click", ()=>track.scrollBy({left: step(), behavior:"smooth"}));
+      const behavior = reduceMotion ? "auto" : "smooth";
+      const go = dir => track.scrollBy({left: dir * step(), behavior});
+      if(prev) prev.addEventListener("click", ()=>go(-1));
+      if(next) next.addEventListener("click", ()=>go(1));
+      /* keyboard: focus the strip, then use the left and right arrow keys (touch swipe is native scrolling) */
+      track.addEventListener("keydown", (e)=>{
+        if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
+        else if(e.key === "ArrowRight"){ e.preventDefault(); go(1); }
+      });
       track.addEventListener("scroll", updateArrows, {passive:true});
       window.addEventListener("resize", updateArrows);
       updateArrows();
