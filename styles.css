@@ -447,16 +447,6 @@ main:focus{outline:none}
 /* ---- gallery captions ---- */
 .ribbon-cap{padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 
-/* ---- hero: on desktop the animation's top edge lines up with the first line of the headline
-        (the small H1 label above the headline is about 48 px tall with its spacing) ---- */
-@media(min-width:881px){.hero-grid .render{margin-top:48px}}
-/* ---- hero: on phones and tablets the animation sits after the buttons ---- */
-@media(max-width:880px){
-  .hero-grid{gap:0}
-  .hero-grid > .hero-copy{display:contents}
-  .hero-grid .render{order:1;max-width:none;width:100%;aspect-ratio:auto;height:220px;margin:32px 0 0}
-  .hero-grid .hero-coords{order:2}
-}
 
 /* ---- sections that collapse on phones (native <details>, open above 600 px) ---- */
 summary.m-sum{list-style:none}
@@ -490,8 +480,6 @@ details[open] > summary.m-sum::after{content:"\2212"}
   .m-group[open] > .m-group-sum{margin-bottom:16px}
 
   /* homepage */
-  .hero{padding-top:60px}
-  .hero-grid .hero-coords{display:none}
   .lp-pills .m-group{margin-top:14px}
   .steps.m-list{display:block;border:none;border-radius:0}
   .m-list .step{display:grid;grid-template-columns:34px 1fr;column-gap:6px;padding:14px 0;border-right:none;border-bottom:1px solid var(--line-2)}
@@ -507,6 +495,53 @@ details[open] > summary.m-sum::after{content:"\2212"}
   .cap-snap .card{padding:16px 14px}
   .cap-snap .card p,.cap-snap .card .ix{display:none}
   .cap-snap .card h3{font-size:17px;margin:0}
+}
+
+/* =========================================================
+   HOMEPAGE PHOTO HERO: one reading column beside a 2 x 2 block
+   of real part photos, stats as the hero's bottom edge.
+   ========================================================= */
+.hero{padding:72px 0 0}
+.hero-grid{grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:56px;align-items:stretch}
+.hero .display-title{font-size:clamp(44px,4.9vw,68px);line-height:.96;margin:22px 0 0}
+.hero .display-title .nobr{white-space:nowrap}
+.hero .sub{font-size:19px;line-height:1.55;max-width:520px;margin:24px 0 30px}
+.hero-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:14px;min-height:0}
+.hero-photo{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#c9ccd2}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.9)}
+.hero-photo figcaption{position:absolute;left:10px;bottom:10px;padding:6px 11px;border-radius:999px;background:rgba(10,14,26,.82);font-size:13px;line-height:1.3;color:var(--text)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:56px;padding-bottom:56px;border-top:1px solid var(--line)}
+.hero-stats > div{display:flex;align-items:baseline;gap:12px;padding-top:18px}
+.hero-stats b{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:36px;line-height:1}
+.hero-stats b i{color:var(--accent-2);font-style:normal}
+.hero-stats span{font-size:14px;color:var(--dim)}
+
+/* tablet: copy on top, the photos below as a 2 x 2 block of 3:2 tiles */
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .hero-photos{grid-template-rows:none}
+  .hero-photo{aspect-ratio:3/2}
+  .hero-stats{margin-top:40px;padding-bottom:44px}
+}
+@media(max-width:900px){
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+}
+
+/* phone: shorter top space, buttons side by side, photos as a swipe row */
+@media(max-width:600px){
+  .hero{padding-top:28px}
+  .hero-grid{gap:26px}
+  .hero .display-title{font-size:clamp(36px,11vw,46px);margin-top:16px}
+  .hero .sub{font-size:17px;line-height:1.5;margin:16px 0 22px}
+  .hero .cta-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hero .cta-row .btn{justify-content:center;padding:14px 10px;font-size:13px}
+  .hero-photos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;gap:12px;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none}
+  .hero-photos::-webkit-scrollbar{display:none}
+  .hero-photo{flex:0 0 74%;scroll-snap-align:start}
+  .hero-stats{margin-top:26px;padding-bottom:34px}
+  .hero-stats > div{flex-direction:column;align-items:flex-start;padding-top:14px;gap:4px}
+  .hero-stats b{font-size:28px}
+  .hero-stats span{font-size:13px}
 }
 
 /* ---- reduced motion ---- */
