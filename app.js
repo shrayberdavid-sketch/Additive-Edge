@@ -10,7 +10,7 @@
   const MAIL_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
   const PHONE_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
   /* Same wording in the cart drawer, on the shop page and under each Add to cart button. */
-  const SHIP_NOTICE = 'This shop ships to <strong>North and South American customers only</strong>. If you\'re outside this region, please <a href="quote.html">Get a Quote</a> and we\'ll provide a separate quote.';
+  const SHIP_NOTICE = 'This shop ships to <strong>North and South American customers only</strong>. If you\'re outside this region, please <a href="quote.html">Get a quote</a> and we\'ll provide a separate quote.';
   const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- PRODUCT CATALOG ----
@@ -342,7 +342,7 @@
         <div class="nav-links" id="navlinks">${links}
           <div class="nav-menu-cta">
             <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="menu">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-            <a class="btn btn-primary" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+            <a class="btn btn-primary" href="quote.html">Get a quote <span class="arr">&rarr;</span></a>
           </div>
         </div>
         <a class="nav-call" href="${PHONE_HREF}" data-call="header">${PHONE_SVG}<span>${PHONE_DISPLAY}</span></a>
@@ -351,7 +351,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-badge" id="cartBadge">0</span>
         </a>
-        <a class="btn btn-primary" href="quote.html">Get a Quote <span class="arr">&rarr;</span></a>
+        <a class="btn btn-primary" href="quote.html">Get a quote <span class="arr">&rarr;</span></a>
         <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
       </div>
     </nav></div></header>`;
@@ -359,7 +359,7 @@
   function renderStickyBar(){
     return `<div class="m-sticky" id="mSticky">
       <a class="btn btn-ghost" href="${PHONE_HREF}" data-call="sticky_bar">${PHONE_SVG} Call</a>
-      <a class="btn btn-primary" href="quote.html">Get a Quote</a>
+      <a class="btn btn-primary" href="quote.html">Get a quote</a>
     </div>`;
   }
   function renderFooter(){
@@ -369,7 +369,7 @@
           <a class="brand" href="./" style="display:inline-flex">
             <b>ADDITIVE <i>EDGE</i></b>
           </a>
-          <p>On-demand 3D-printed parts, produced in-house and across a vetted manufacturing network. Printer- and material-agnostic. Engineering-grade.</p>
+          <p>On-demand 3D printed parts, produced in-house and across a vetted manufacturing network.</p>
         </div>
         <div class="foot-col"><h4>Explore</h4>
           <a href="what-we-make.html">Capabilities</a>
@@ -390,12 +390,12 @@
           <a href="mailto:david@additive-edge.com">david@additive-edge.com</a>
           <a href="${PHONE_HREF}" data-call="footer">${PHONE_DISPLAY}</a>
           <span class="foot-addr">Sharon, MA 02067</span>
-          <a href="quote.html">Get a Quote</a>
+          <a href="quote.html">Get a quote</a>
         </div>
       </div>
       <div class="foot-bottom">
-        <span>&copy; 2026 ADDITIVE EDGE. ALL RIGHTS RESERVED</span>
-        <span>ADDITIVE MANUFACTURING // IN-HOUSE + NETWORK</span>
+        <span>&copy; 2026 Additive Edge. All rights reserved.</span>
+        <span>Additive manufacturing, in-house and across our network</span>
       </div>
       <div class="foot-m">
         <div class="foot-m-brand">
