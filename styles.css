@@ -27,7 +27,7 @@ h1:not(.label),h2,h3,.display-title{font-family:'IBM Plex Sans Condensed',sans-s
 header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.74);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
 .brand{display:flex;align-items:center;cursor:pointer}
-.brand b{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.brand b{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:23px;letter-spacing:.06em;text-transform:uppercase;color:#fff}
 .brand b i{color:#fff;font-style:normal}
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-links{display:flex;align-items:center;gap:4px}
