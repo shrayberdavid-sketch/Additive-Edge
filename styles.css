@@ -572,6 +572,28 @@ details[open] > summary.m-sum::after{content:"\2212"}
   .hero-stats > div > span{font-size:13px}
 }
 
+/* ---- Google rating strip above the header ---- */
+.rate-strip{display:block;position:relative;z-index:101;background:#0f1424;border-bottom:1px solid rgba(255,255,255,.08);color:#c9d0dc;font-size:13.5px;line-height:1}
+.rate-strip-in{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:38px}
+.rate-strip-g{width:15px;height:15px;flex:0 0 auto}
+.rate-strip-stars{display:inline-flex;gap:2px}
+.rate-strip-stars svg{width:13px;height:13px;fill:#f5b301}
+.rate-strip-txt b{color:var(--text);font-weight:600}
+.rate-strip-sep{width:1px;height:14px;background:rgba(255,255,255,.18)}
+.rate-strip-more{color:#a7b0c2;transition:color .2s}
+.rate-strip-arr{display:none;color:#a7b0c2}
+.rate-strip:hover .rate-strip-more{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.rate-strip:focus-visible{outline:2px solid var(--accent-2);outline-offset:-2px}
+header{top:var(--strip-top,0px)}
+@media(max-width:600px){
+  .rate-strip{font-size:13px}
+  .rate-strip-in{justify-content:center;gap:9px;height:36px}
+  .rate-strip-g{width:14px;height:14px}
+  .rate-strip-stars svg{width:12px;height:12px}
+  .rate-strip-sep,.rate-strip-more{display:none}
+  .rate-strip-arr{display:inline}
+}
+
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce){
   html,.ribbon-track{scroll-behavior:auto}
