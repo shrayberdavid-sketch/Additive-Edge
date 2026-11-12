@@ -514,6 +514,7 @@ details[open] > summary.m-sum::after{content:"\2212"}
 .hero-stats > div{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:24px}
 .hero-stats b{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:clamp(44px,4.2vw,60px);line-height:.95;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hero-stats b i{color:var(--accent-2);font-style:normal}
+.hero-dots{display:none}
 .hero-stats > div > span{font-size:15px;color:var(--dim)}
 
 /* tablet: copy on top, the photos below as a 2 x 2 block of 3:2 tiles */
@@ -538,6 +539,10 @@ details[open] > summary.m-sum::after{content:"\2212"}
   .hero-photos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;gap:12px;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none}
   .hero-photos::-webkit-scrollbar{display:none}
   .hero-photo{flex:0 0 74%;scroll-snap-align:start}
+  .hero-dots{display:flex;justify-content:center;gap:2px;margin-top:-18px}
+  .hero-dots button{width:28px;height:28px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .hero-dots button::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);transition:width .2s var(--ease),background .2s}
+  .hero-dots button.on::before{width:20px;border-radius:4px;background:var(--accent-2)}
   .hero-stats{margin-top:26px;padding-bottom:34px}
   .hero-stats > div{padding-top:16px;gap:4px}
   .hero-stats b{font-size:36px}

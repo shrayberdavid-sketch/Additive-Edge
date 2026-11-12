@@ -452,6 +452,7 @@
     AE.badge();
     initReveal();
     initCountUp();
+    initHeroDots();
     initRibbon();
 
     /* load any existing Shopify cart, then refresh badge + drawer */
@@ -600,6 +601,42 @@
       ents.forEach(e=>{ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
     },{threshold:.4});
     els.forEach(el=>io.observe(el));
+  }
+
+  /* Phone hero: dots under the swipeable photo row show how many photos there are and
+     which one is in view. Tapping a dot scrolls to that photo. CSS shows them at 600 px and below. */
+  function initHeroDots(){
+    const row = document.querySelector(".hero-photos");
+    if(!row) return;
+    const tiles = [...row.querySelectorAll(".hero-photo")];
+    if(tiles.length < 2) return;
+    const dots = document.createElement("div");
+    dots.className = "hero-dots";
+    tiles.forEach((tile, i)=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Show photo " + (i + 1) + " of " + tiles.length);
+      b.addEventListener("click", ()=>{
+        row.scrollTo({ left: tile.offsetLeft - row.offsetLeft - parseFloat(getComputedStyle(row).paddingLeft || 0), behavior: reduceMotion ? "auto" : "smooth" });
+      });
+      dots.appendChild(b);
+    });
+    row.after(dots);
+    const btns = [...dots.children];
+    const update = ()=>{
+      const max = row.scrollWidth - row.clientWidth;
+      let active = 0;
+      if(max > 0 && row.scrollLeft >= max - 4) active = tiles.length - 1;
+      else {
+        const left = row.getBoundingClientRect().left;
+        let best = Infinity;
+        tiles.forEach((t, i)=>{ const d = Math.abs(t.getBoundingClientRect().left - left); if(d < best){ best = d; active = i; } });
+      }
+      btns.forEach((b, i)=>{ b.classList.toggle("on", i === active); b.setAttribute("aria-current", i === active ? "true" : "false"); });
+    };
+    row.addEventListener("scroll", update, {passive:true});
+    window.addEventListener("resize", update);
+    update();
   }
 
   function initReveal(){
