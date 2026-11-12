@@ -13,7 +13,7 @@
 </script>
 <title>Get a 3D Printing Quote | Additive Edge</title>
 <meta name="description" content="Request a 3D printing quote. Send your part details, material and timeline, and we will recommend the best process and get back to you.">
-<link rel="canonical" href="https://additive-edge.com/quote.html">
+<link rel="canonical" href="https://additive-edge.com/quote">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Saira+Condensed:wght@800&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Get a 3D Printing Quote | Additive Edge">
 <meta property="og:description" content="Request a 3D printing quote. Send your part details, material and timeline, and we will recommend the best process and get back to you.">
-<meta property="og:url" content="https://additive-edge.com/quote.html">
+<meta property="og:url" content="https://additive-edge.com/quote">
 <meta property="og:image" content="https://additive-edge.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Get a 3D Printing Quote | Additive Edge">
@@ -64,7 +64,7 @@
 </head>
 <body data-page="quote">
 <a class="skip-link" href="#main">Skip to content</a>
-<noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make.html">Capabilities</a> | <a href="our-network.html">Our Network</a> | <a href="about.html">About</a> | <a href="shop.html">Shop</a> | <a href="quote.html">Get a quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
+<noscript><nav style="position:relative;z-index:2;padding:16px 32px;font-size:14px"><a href="./">Home</a> | <a href="what-we-make">Capabilities</a> | <a href="our-network">Our Network</a> | <a href="about">About</a> | <a href="shop">Shop</a> | <a href="quote">Get a quote</a> | <a href="partnerships">Partner Program</a></nav></noscript>
 <div id="nav-root"></div>
 <main id="main" tabindex="-1">
 
@@ -210,7 +210,7 @@
 
 </main>
 <div id="footer-root"></div>
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 <script>
 (function(){
   var form = document.querySelector('.quote-form');
@@ -246,7 +246,7 @@
   branches.forEach(function(b){ setBranchState(b, false); });
   subject.addEventListener('change', function(){ showBranch(subject.value); });
 
-  // Deep-link support: links like quote.html?subject=Material%20needs preselect a request type.
+  // Deep-link support: links like quote?subject=Material%20needs preselect a request type.
   var preset = new URLSearchParams(window.location.search).get('subject');
   if(preset){
     var match = Array.prototype.find.call(subject.options, function(o){ return o.value === preset; });
