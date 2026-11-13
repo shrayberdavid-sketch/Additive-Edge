@@ -382,6 +382,7 @@
     wireFieldFocus();
     wireStickyAfterHero();
     initMobileDetails();
+    wireCommonQuestions();
 
     /* nav cart icon opens the drawer instead of navigating to a cart page */
     const cartBtn = document.querySelector(".cart-btn");
@@ -465,6 +466,17 @@
 
   /* <details data-mobile-closed> are open above 600 px and closed on phones.
      Above 600 px their summaries are plain text, so they also leave the tab order. */
+  /* "Common questions" blocks (copied from faq.html by tools/build_common_questions.py).
+     The FAQ page sends its own faq_open events, so skip it here. */
+  function wireCommonQuestions(){
+    if(document.body.dataset.page === "faq") return;
+    document.querySelectorAll(".cq details.faq-item").forEach(d=>{
+      d.addEventListener("toggle", ()=>{
+        if(d.open) track("faq_open", { question: d.querySelector("h3").textContent, source: "common_questions" });
+      });
+    });
+  }
+
   function initMobileDetails(){
     const list = document.querySelectorAll("details[data-mobile-closed]");
     if(!list.length || !window.matchMedia) return;

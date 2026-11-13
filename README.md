@@ -29,6 +29,7 @@ Static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 | `styles.css` | Shared styles |
 | `app.js` | Menu, cart drawer and sticky-bar behavior, Shopify cart, product catalog and GA4 events |
 | `tools/build_chrome.py` | Source of the shared header (Google rating strip + menu) and footer; writes them into every page |
+| `tools/build_common_questions.py` | Copies chosen questions from `faq.html` into a "Common questions" block on 8 pages |
 | `*.pdf` | Datasheets and safety data sheets |
 | `og-image.png` | Social share image (1200 x 630). `og-image.svg` is the source. |
 | `robots.txt`, `sitemap.xml` | Search engine files |
@@ -46,6 +47,13 @@ The header (Google rating strip and menu) and the footer are plain HTML inside e
 python3 tools/build_chrome.py
 ```
 It rewrites the block between `<div id="nav-root">` and `<!-- /nav-root -->` (and the same for `footer-root`) on every page and marks the current page in the menu.
+
+## FAQ and Common questions
+`faq.html` holds every question and answer, plus matching `FAQPage` structured data. When you edit an answer, change it in both places on that page, then run
+```
+python3 tools/build_common_questions.py
+```
+to copy it into the "Common questions" blocks on the homepage, quote, capabilities, product, shop and partner pages. Which questions each page shows is set in `PAGES` at the top of the script. Those pages link to `/faq` and carry no `FAQPage` data of their own.
 
 ## Deploy
 GitHub Pages deploys from the `main` branch, root folder. Anything merged to `main` goes live right away, so make changes on a branch and open a pull request.

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Saira+Condensed:wght@800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -395,6 +395,44 @@
     </div>
   </section>
 
+  <!-- common-questions -->
+  <section class="cq" aria-labelledby="cq-h" style="background:var(--panel)">
+    <div class="wrap cq-grid">
+      <div class="sec-head">
+        <span class="label">Common questions</span>
+        <h2 id="cq-h">Quotes, pricing and lead times</h2>
+        <a class="cq-more" href="faq#quotes">See all 69 answers in the FAQ <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" id="how-much-does-3d-printing-cost">
+          <summary><h3>How much does 3D printing cost?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>3D printed parts can cost from about $20 to a few thousand dollars. The material, the printer used and the size of the part drive the final price. Send us your part for an exact quote.</p></div>
+        </details>
+        <details class="faq-item" id="is-there-a-minimum-order-quantity-or-minimum-order-value">
+          <summary><h3>Is there a minimum order quantity or minimum order value?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>No. Additive Edge has no minimum order quantity and no minimum order value. Higher volumes lower the cost per part.</p></div>
+        </details>
+        <details class="faq-item" id="how-long-does-3d-printing-take-what-are-your-lead-times">
+          <summary><h3>How long does 3D printing take? What are your lead times?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>Lead times run from 2 business days to about 4 weeks, depending on material and quantity. We confirm your date with the quote.</p></div>
+        </details>
+        <details class="faq-item" id="do-you-offer-rush-or-expedited-3d-printing">
+          <summary><h3>Do you offer rush or expedited 3D printing?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>You can request rush or expedited timing on the quote form. We confirm what is possible for your material and quantity when we send the quote.</p></div>
+        </details>
+        <details class="faq-item" id="what-file-formats-do-you-accept">
+          <summary><h3>What file formats do you accept?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>We accept STL, STEP, 3MF and OBJ files, plus PDF drawings. Paste a Google Drive, Dropbox or OneDrive link into the quote form, or email the file to <a href="mailto:david@additive-edge.com">david@additive-edge.com</a> and we will match it to your request.</p></div>
+        </details>
+        <details class="faq-item" id="will-you-sign-an-nda">
+          <summary><h3>Will you sign an NDA?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>We don't require an NDA, but we are glad to sign one before you share files.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <!-- /common-questions -->
+
 </main>
 <div id="footer-root">
 <footer><div class="wrap">
@@ -451,7 +489,7 @@
   </div>
 </div></footer>
 </div><!-- /footer-root -->
-<script src="app.js?v=20"></script>
+<script src="app.js?v=21"></script>
 <script>
 (function(){
   var form = document.querySelector('.quote-form');
