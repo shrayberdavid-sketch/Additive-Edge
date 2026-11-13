@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Saira+Condensed:wght@800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -173,6 +173,44 @@
     </div>
   </section>
 
+  <!-- common-questions -->
+  <section class="cq" aria-labelledby="cq-h" style="background:var(--panel)">
+    <div class="wrap cq-grid">
+      <div class="sec-head">
+        <span class="label">Common questions</span>
+        <h2 id="cq-h">Rizium GF and CF filament</h2>
+        <a class="cq-more" href="faq#rizium">See all 69 answers in the FAQ <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" id="does-rizium-filament-need-to-be-dried-before-printing">
+          <summary><h3>Does Rizium filament need to be dried before printing?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>No. Rizium absorbs less than 0.01% moisture, so it is ready to print straight from the spool with no drying.</p></div>
+        </details>
+        <details class="faq-item" id="what-is-the-difference-between-rizium-gf-and-rizium-cf">
+          <summary><h3>What is the difference between Rizium GF and Rizium CF?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>Rizium GF is glass-fiber reinforced and Rizium CF is carbon-fiber reinforced. CF is the stiffer grade, with a tensile modulus of 6.7 GPa against 3.6 GPa for GF, and prints in matte black. GF has slightly higher impact strength. Both share the same no-drying COC base.</p></div>
+        </details>
+        <details class="faq-item" id="what-printer-do-i-need-for-rizium-gf-or-rizium-cf">
+          <summary><h3>What printer do I need for Rizium GF or Rizium CF?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>Any FFF printer with hardened gears and a hardened nozzle. Rizium is 1.75 mm filament and prints with a nozzle at 220 to 260°C and a bed at 90°C.</p></div>
+        </details>
+        <details class="faq-item" id="does-rizium-need-an-enclosure-and-which-bed-surface-works-be">
+          <summary><h3>Does Rizium need an enclosure, and which bed surface works best?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>No enclosure is needed. A rougher, textured build plate works best for Rizium.</p></div>
+        </details>
+        <details class="faq-item" id="is-rizium-safe-to-print-indoors">
+          <summary><h3>Is Rizium safe to print indoors?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>Rizium is a low-VOC material and does not require venting. Rizium GF and the COC base used in Rizium CF are GREENGUARD certified.</p></div>
+        </details>
+        <details class="faq-item" id="when-should-i-not-use-rizium">
+          <summary><h3>When should I not use Rizium?</h3><span class="pm" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p>Avoid Rizium for automotive parts exposed to hydrocarbons such as fuel and oil, and for sustained use above its heat deflection temperature of about 75°C (GF) or 73°C (CF).</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <!-- /common-questions -->
+
   <section class="ctaband">
     <div class="wrap"><h2>Want us to print it for you?</h2><p>Skip the spool. Send the part and we'll produce it in Rizium GF.</p>
       <a class="btn btn-primary btn-lg" href="quote">Get a quote <span class="arr">&rarr;</span></a></div>
@@ -234,6 +272,6 @@
   </div>
 </div></footer>
 </div><!-- /footer-root -->
-<script src="app.js?v=20"></script>
+<script src="app.js?v=21"></script>
 </body>
 </html>

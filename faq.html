@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Saira+Condensed:wght@800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.svg">
 <meta property="og:type" content="website">
@@ -817,25 +817,10 @@
 .faq-group{scroll-margin-top:132px;margin-bottom:56px}
 .faq-group:last-of-type{margin-bottom:0}
 .faq-group>h2{font-size:clamp(26px,3vw,36px);margin:0 0 20px}
-.faq-list{border-top:1px solid var(--line)}
-.faq-item{border-bottom:1px solid var(--line);scroll-margin-top:132px}
-.faq-item summary{list-style:none;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 4px;cursor:pointer;min-height:44px}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary h3{font-family:'IBM Plex Sans',sans-serif;font-size:17.5px;font-weight:600;line-height:1.4;margin:0;letter-spacing:0;text-transform:none;color:var(--text)}
-.faq-item summary:hover h3{color:var(--accent-2)}
-.faq-item summary:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;border-radius:3px}
-.faq-item .pm{flex:0 0 24px;width:24px;height:24px;margin-top:1px;position:relative;border:1px solid var(--line);border-radius:50%}
-.faq-item .pm::before,.faq-item .pm::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.5px;background:var(--accent-2);transform:translate(-50%,-50%);transition:transform .2s}
-.faq-item .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
-.faq-item[open] .pm::after{transform:translate(-50%,-50%) rotate(0)}
-.faq-item[open] .pm{border-color:var(--accent)}
-.faq-a{padding:0 44px 22px 4px;color:var(--dim);font-size:16px;line-height:1.7;max-width:720px}
-.faq-a a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px}
-.faq-a a:hover{color:var(--text)}
+/* question and answer rows (.faq-list, .faq-item, .faq-a) live in styles.css */
 .faq-none{display:none;padding:28px;border:1px solid var(--line);border-radius:4px;background:var(--bg-2);color:var(--dim)}
 .faq-none a{color:var(--accent-2);text-decoration:underline}
 .faq-chips{display:none}
-@media (prefers-reduced-motion:reduce){.faq-item .pm::before,.faq-item .pm::after{transition:none}}
 @media (max-width:980px){
   .faq-layout{grid-template-columns:1fr;gap:0}
   .faq-nav{display:none}
@@ -845,8 +830,6 @@
   .faq-chips a.on{border-color:var(--accent);color:var(--text);background:var(--accent-soft)}
   .faq-body{padding:0 0 72px}
   .faq-group,.faq-item{scroll-margin-top:150px}
-  .faq-a{padding-right:8px}
-  .faq-item summary h3{font-size:16.5px}
 }
 </style>
 </head>
@@ -1314,6 +1297,6 @@
   items.forEach(function(d){d.addEventListener('toggle',function(){if(d.open&&typeof gtag==='function')gtag('event','faq_open',{question:d.querySelector('h3').textContent})})});
 })();
 </script>
-<script src="app.js?v=20"></script>
+<script src="app.js?v=21"></script>
 </body>
 </html>
