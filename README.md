@@ -15,6 +15,7 @@ Static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 | `our-network.html` | Our Network |
 | `about.html` | About |
 | `faq.html` | FAQ (69 questions with `FAQPage` schema; answer text must match the JSON-LD word for word, and question `id`s are deep links) |
+| `privacy.html` | Privacy policy (linked from the footer). Update the date at the top whenever it changes |
 | `resources.html` | Resources (placeholder, not in the sitemap yet) |
 | `quote.html` | Request a quote (Web3Forms) |
 | `partnerships.html` | Machine shop partner program (served at `/partnerships`) |

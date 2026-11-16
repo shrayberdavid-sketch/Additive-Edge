@@ -110,7 +110,7 @@ def footer():
     </div>
   </div>
   <div class="foot-bottom">
-    <span>&copy; 2026 Additive Edge. All rights reserved.</span>
+    <span>&copy; 2026 Additive Edge. All rights reserved. &middot; <a class="foot-legal-link" href="privacy">Privacy policy</a></span>
     <span>Additive manufacturing, in-house and across our network</span>
   </div>
   <div class="foot-m">
@@ -131,14 +131,15 @@ def footer():
       <a href="faq">FAQ</a>
       <a href="quote">Get a quote</a>
     </nav>
-    <div class="foot-m-legal">&copy; 2026 Additive Edge</div>
+    <div class="foot-m-legal">&copy; 2026 Additive Edge &middot; <a class="foot-legal-link" href="privacy">Privacy policy</a></div>
   </div>
 </div></footer>
 """
 
 
-NAV_RE = re.compile(r'<div id="nav-root">(?:</div>|.*?</div><!-- /nav-root -->)', re.S)
-FOOT_RE = re.compile(r'<div id="footer-root">(?:</div>|.*?</div><!-- /footer-root -->)', re.S)
+# An empty placeholder on a new page may or may not already carry the closing comment.
+NAV_RE = re.compile(r'<div id="nav-root">(?:</div>(?:<!-- /nav-root -->)?|.*?</div><!-- /nav-root -->)', re.S)
+FOOT_RE = re.compile(r'<div id="footer-root">(?:</div>(?:<!-- /footer-root -->)?|.*?</div><!-- /footer-root -->)', re.S)
 NOSCRIPT_NAV_RE = re.compile(r'<noscript><nav [^\n]*?</nav></noscript>\r?\n')
 PAGE_RE = re.compile(r'<body[^>]*\bdata-page="([^"]*)"')
 
