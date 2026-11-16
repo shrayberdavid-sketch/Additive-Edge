@@ -25,6 +25,8 @@ Static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 | `product-rizium-support.html` | Rizium Support product |
 | `product-ataru.html` | Ataru resin product |
 | `product-ataru-cleaner.html` | Ataru Resin Cleaner product |
+| `404.html` | "Page not found" page; GitHub Pages shows it for any missing address (`noindex`, uses `<base href="/">` so links work at nested addresses) |
+| `book-online.html`, `post/maximizing-efficiency-in-3d-printing-consulting-services.html` | Redirects for old-site URLs Google still had on record (to `/quote` and `/what-we-make`) |
 | `cart.html` | Redirect that opens the cart drawer on the shop page (`noindex`) |
 | `styles.css` | Shared styles |
 | `app.js` | Menu, cart drawer and sticky-bar behavior, Shopify cart, product catalog and GA4 events |
